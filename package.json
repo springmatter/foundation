@@ -1,14 +1,20 @@
 {
-  "name": "foundation",
+  "name": "@springmatter/foundation",
   "version": "0.1.0",
   "private": true,
+  "main": "plugin/install.js",
+  "files": [
+    "plugin/"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build:tailwind": "tailwind build utilities/tailwind.css -o utilities/utilities.css",
+    "build:tailwind": "tailwind build utilities/tailwind.css -o src/utilities.css",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "core-js": "^3.4.4",
+    "feather-icons": "^4.25.0",
+    "fuse.js": "^3.4.6",
     "vue": "^2.6.10"
   },
   "devDependencies": {
@@ -25,5 +31,17 @@
     "prettier": "^1.19.1",
     "tailwindcss": "^1.1.4",
     "vue-template-compiler": "^2.6.10"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "jest": {
+    "preset": "@vue/cli-plugin-unit-jest"
+  },
+  "babel": {
+    "presets": [
+      "@vue/cli-plugin-babel/preset"
+    ]
   }
 }

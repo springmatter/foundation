@@ -1,6 +1,3 @@
-import upperFirst from "lodash/upperFirst";
-import camelCase from "lodash/camelCase";
-
 import "./styles/utilities.css";
 import "./styles/base.css";
 

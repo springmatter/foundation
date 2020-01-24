@@ -1,0 +1,19 @@
+import { Meta, Story, Props } from "@storybook/addon-docs/blocks";
+import SmButton from "../plugin/components/SmButton.vue";
+
+<Meta title="SmButton" component={SmButton} />
+
+# InfoButton
+
+Some **markdown** description, or whatever you want.
+
+<Story name="basic" height="400px">
+  {{
+    components: { SmButton },
+    template: '<SmButton kind="primary">Click me</SmButton>'
+  }}
+</Story>
+
+## Props
+
+<Props of={SmButton} />

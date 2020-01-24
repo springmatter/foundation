@@ -2,7 +2,7 @@
   <button
     class="SmButton"
     :class="[kind, { small: small }]"
-    @click="$emit('click')"
+    @click="$emit('click', $event)"
     @mouseover="$emit('mouseover')"
     @mouseenter="$emit('mouseenter')"
     :style="{

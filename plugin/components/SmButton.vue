@@ -3,12 +3,6 @@
     class="SmButton"
     :class="[kind, { small: small }]"
     @click="$emit('click', $event)"
-    @mouseover="$emit('mouseover')"
-    @mouseenter="$emit('mouseenter')"
-    :style="{
-      lineHeight: icon ? '0' : 'inherit',
-      padding: icon ? '4px' : 'unset'
-    }"
   >
     <slot></slot>
     <SmIcon v-if="icon" :name="icon" :size="small ? 's' : 'm'" />
@@ -16,21 +10,29 @@
 </template>
 
 <script>
+import SmIcon from "./SmIcon.vue";
 export default {
-  name: "SmButton",
+  components: {
+    SmIcon
+  },
   props: {
+    /** Specifies the visual style of the button (primary|secondary|outline|icon) */
     kind: {
       type: String,
       required: false,
-      default: "",
+      default: "primary",
       validator: function(value) {
-        return ["primary", "secondary", "alternate", ""].indexOf(value) !== -1;
+        return (
+          ["primary", "secondary", "outline", "icon"].indexOf(value) !== -1
+        );
       }
     },
+    /** Adds an icon to the button. Must be the name of a feather icon. */
     icon: {
       type: String,
       required: false
     },
+    /** Makes the button smaller */
     small: {
       type: Boolean,
       required: false
@@ -47,9 +49,11 @@ export default {
 
 .primary,
 .secondary,
-.alternate {
+.outline,
+.icon {
   min-width: 176px;
   height: 48px;
+  padding: 0 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -58,14 +62,15 @@ export default {
 
 .primary > svg,
 .secondary > svg,
-.alternate > svg {
+.outline > svg {
   margin-left: 8px;
 }
 
 .SmButton:disabled,
 .primary:disabled,
 .secondary:disabled,
-.alternate:disabled {
+.outline:disabled,
+.icon:disabled {
   opacity: 0.25;
   cursor: not-allowed;
 }
@@ -76,7 +81,8 @@ export default {
   opacity: 0.75;
 }
 
-.alternate:active {
+.outline:active,
+.icon:active {
   opacity: 0.5;
 }
 
@@ -92,24 +98,25 @@ export default {
 
 .secondary,
 .secondary:disabled:hover {
-  background: var(--secondary);
-  color: white;
-  border: none;
+  background: var(--gray2);
+  color: black;
 }
 
 .secondary:hover {
-  background: black;
-  border: 2px solid var(--primary);
+  background: var(--gray3);
 }
 
-.alternate,
-.alternate:disabled:hover {
+.outline,
+.outline:disabled:hover,
+.icon,
+.icon:disabled:hover {
   background: white;
   color: black;
   border: 1px solid var(--secondary);
 }
 
-.alternate:hover {
+.outline:hover,
+.icon:hover {
   border: 1px solid var(--primary);
   color: var(--primary);
 }
@@ -117,5 +124,10 @@ export default {
 .small {
   min-width: 120px;
   height: 32px;
+}
+
+.icon {
+  padding: 7px;
+  min-width: 0;
 }
 </style>

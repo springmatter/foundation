@@ -1,5 +1,5 @@
 <template>
-  <div id="SmSearchDiv">
+  <div>
     <input
       type="search"
       class="SmSearch"
@@ -17,7 +17,8 @@ import * as Fuse from "fuse.js";
 export default {
   name: "SmSearch",
   props: {
-    targets: {
+    /** An list of Strings or Objects to search. */
+    options: {
       type: Array,
       required: true
     }
@@ -29,10 +30,10 @@ export default {
     };
   },
   computed: {
-    options: function() {
-      // Check if targets is a list of strings or dictionaries to set correct keys.
+    settings: function() {
+      // Check if 'options' is a list of strings or dictionaries to set correct keys.
       let keys =
-        typeof this.targets[0] == "string" ? [] : Object.keys(this.targets[0]);
+        typeof this.options[0] == "string" ? [] : Object.keys(this.options[0]);
       return {
         shouldSort: true,
         threshold: 0.3,
@@ -44,20 +45,20 @@ export default {
       };
     },
     fuse: function() {
-      return new Fuse(this.targets, this.options);
+      return new Fuse(this.options, this.settings);
     }
   },
   methods: {
     filterResults() {
       // If filter is empty, return all results
       if (this.filter == "") {
-        this.results = this.targets;
+        this.results = this.options;
       } else {
         this.results = this.fuse.search(this.filter);
         // If list is a string, access indexed values.
-        if (typeof this.targets[0] == "string") {
+        if (typeof this.options[0] == "string") {
           for (var i = 0; i < this.results.length; i++) {
-            this.results[i] = this.targets[this.results[i]];
+            this.results[i] = this.options[this.results[i]];
           }
         }
       }

@@ -9,14 +9,14 @@
     </div>
     <div v-if="expanded" class="SmDropdownList">
       <div class="SmSearch" v-if="searchable">
-        <SmSearch v-model="results" :targets="options" />
+        <SmSearch v-model="results" :options="options" />
       </div>
       <div class="results">
         <div
           v-for="(result, index) in results"
           :key="index"
           class="resultClass"
-          @click="selectTarget(result, index)"
+          @click="select(result, index)"
         >{{ displayKey ? result[displayKey] : result }}</div>
         <div v-if="results.length == 0" class="noResult">No Results Found</div>
       </div>
@@ -62,7 +62,7 @@ export default {
     };
   },
   methods: {
-    selectTarget(result, index) {
+    select(result, index) {
       if (this.displayKey) {
         this.selection.display = result[this.displayKey];
         this.selection.return = this.options[index];

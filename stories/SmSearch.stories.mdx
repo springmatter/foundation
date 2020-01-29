@@ -1,0 +1,38 @@
+import { Meta, Story, Preview, Props } from "@storybook/addon-docs/blocks";
+import SmSearch from "../plugin/components/SmSearch.vue";
+import { action } from "@storybook/addon-actions";
+
+<Meta title="Components/SmSearch" component={SmSearch} />
+
+# SmSearch
+
+A standard searchbar with Fuse.js functionality.
+
+<Props of={SmSearch} />
+
+## Standard Search
+
+<Preview>
+  <Story name="standard" height="40px">
+    {{
+      components: { SmSearch },
+      methods: {
+        display(results) {
+          action("searched", results);
+        }
+      },
+      template: `
+          <div>
+              <SmSearch style="width:300px" class="m-2"
+                v-model="results"
+                @input="display(results)"
+                :options="[{ name: 'Sally', type: 'dog', color: 'white'},
+                           { name: 'Wanda', type: 'dog', color: 'brown'},
+                           { name: 'Jack', type: 'cat', color: 'black'}, 
+                           { name: 'Pepper', type: 'dog', color: 'mixed'}, 
+                           { name: 'Lucy', type: 'cat', color: 'white'}]"/>
+          </div>
+          `
+    }}
+  </Story>
+</Preview>

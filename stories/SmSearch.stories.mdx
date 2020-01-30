@@ -16,8 +16,14 @@ A standard searchbar with Fuse.js functionality.
   <Story name="standard" height="40px">
     {{
       components: { SmSearch },
+      data() {
+        return {
+          results: []
+        };
+      },
       methods: {
         display(results) {
+          console.log(results);
           action("searched", results);
         }
       },

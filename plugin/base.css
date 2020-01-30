@@ -17,106 +17,52 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
   border-radius: 2px;
 }
 
-body {
-  margin: 0;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  color: black;
-  line-height: 24px;
-}
-
-:focus,
-button:focus {
+:focus {
   outline: #0038ff solid 2px;
   outline-offset: 1px;
 }
 
 h1 {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 56px;
-  line-height: 64px;
+  font-size: 3rem;
 }
 
 h2 {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 40px;
-  line-height: 48px;
+  font-size: 2.25rem;
 }
 
 h3 {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 32px;
-  line-height: 40px;
+  font-size: 1.5rem;
 }
 
 h4 {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 32px;
+  font-size: 1.25rem;
 }
 
 h5 {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 1rem;
 }
 
 h6 {
-  font-size: inherit;
-  line-height: inherit;
+  font-size: 0.875rem;
 }
 
 small {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 16px;
-}
-
-b,
-strong {
-  font-weight: bold;
+  font-size: 0.75rem;
 }
 
 a {
   color: var(--primary);
-  text-decoration: none;
-  background-color: transparent;
 }
 
 a:hover {
   color: var(--primary-hover);
-  text-decoration: none;
-  background-color: transparent;
-  cursor: pointer;
 }
 
 [hidden] {
   display: none !important;
-}
-
-ul {
-  list-style-type: none;
-}
-
-ol {
-  list-style-type: decimal;
-}
-
-li {
-  margin-bottom: 8px;
 }
 
 /********** FORMS **********/

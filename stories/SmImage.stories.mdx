@@ -1,0 +1,38 @@
+import { Meta, Story, Preview, Props } from "@storybook/addon-docs/blocks";
+import SmImage from "../plugin/components/SmImage.vue";
+
+<Meta title="Components/SmImage" component={SmImage} />
+
+# SmImage
+
+An image with a loading state.
+
+<Props of={SmImage} />
+
+## Standard
+
+<Preview>
+  <Story name="default" height="150px">
+    {{
+      components: { SmImage },
+      template: `
+        <SmImage src="https://via.placeholder.com/150/FFFF00/000000" />
+      `
+    }}
+  </Story>
+</Preview>
+
+## Loading
+
+<Preview>
+  <Story name="loading" height="150px">
+    {{
+      components: { SmImage },
+      template: `
+      <div>
+        <SmImage src="https://via.placeholder.com/150/FFFF00/000000?Text=Your+Image" loading>Primary</SmImage>
+      </div>
+      `
+    }}
+  </Story>
+</Preview>

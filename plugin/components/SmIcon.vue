@@ -14,10 +14,12 @@ import feather from "feather-icons";
 export default {
   name: "SmIcon",
   props: {
+    /** The name of the feather icon you'd like to use */
     name: {
       type: String,
       required: true
     },
+    /** size of the icon (s|m|l) */
     size: {
       type: String,
       default: "m",

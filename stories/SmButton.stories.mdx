@@ -17,9 +17,9 @@ A standard button component with optinal icon.
       components: { SmButton },
       template: `
       <div class="flex">
-        <SmButton class="m-2">Primary</SmButton>
-        <SmButton kind="secondary" class="m-2">Secondary</SmButton>
-        <SmButton kind="outline" class="m-2">Outline</SmButton>
+        <SmButton class="ma2">Primary</SmButton>
+        <SmButton kind="secondary" class="ma2">Secondary</SmButton>
+        <SmButton kind="ghost" class="ma2">Ghost</SmButton>
       </div>
       `
     }}
@@ -34,9 +34,9 @@ A standard button component with optinal icon.
       components: { SmButton },
       template: `
       <div class="flex">
-        <SmButton small class="m-2">Primary</SmButton>
-        <SmButton small kind="secondary" class="m-2">Secondary</SmButton>
-        <SmButton small kind="outline" class="m-2">Outline</SmButton>
+        <SmButton small class="ma2">Primary</SmButton>
+        <SmButton small kind="secondary" class="ma2">Secondary</SmButton>
+        <SmButton small kind="ghost" class="ma2">Ghost</SmButton>
       </div>
       `
     }}
@@ -51,16 +51,16 @@ A standard button component with optinal icon.
       components: { SmButton },
       template: `
       <div class="flex flex-wrap">
-        <SmButton icon="plus" class="m-2">Primary</SmButton>
-        <SmButton icon="sun" kind="secondary" class="m-2">Secondary</SmButton>
-        <SmButton icon="archive" kind="outline" class="m-2">Outline</SmButton>
-        <div class="w-full"></div>
-        <SmButton small icon="plus" class="m-2">Primary</SmButton>
-        <SmButton small icon="sun" kind="secondary" class="m-2">
+        <SmButton icon="plus" class="ma2">Primary</SmButton>
+        <SmButton icon="sun" kind="secondary" class="ma2">Secondary</SmButton>
+        <SmButton icon="archive" kind="ghost" class="ma2">Ghost</SmButton>
+        <div class="w-100"></div>
+        <SmButton small icon="plus" class="ma2">Primary</SmButton>
+        <SmButton small icon="sun" kind="secondary" class="ma2">
           Secondary
         </SmButton>
-        <SmButton small icon="archive" kind="outline" class="m-2">
-          Outline
+        <SmButton small icon="archive" kind="ghost" class="ma2">
+          Ghost
         </SmButton>
       </div>
       `
@@ -78,10 +78,10 @@ Prop `kind` must be set to `icon` and prop `icon` must be specified.
       components: { SmButton },
       template: `
       <div class="flex">
-        <SmButton small icon="plus" kind="icon" class="m-2"></SmButton>
-        <SmButton small icon="feather" kind="icon" class="m-2"></SmButton>
-        <SmButton small icon="sun" kind="icon" class="m-2"></SmButton>
-        <SmButton small icon="archive" kind="icon" class="m-2"></SmButton>
+        <SmButton small icon="plus" kind="icon" class="ma2"></SmButton>
+        <SmButton small icon="feather" kind="icon" class="ma2"></SmButton>
+        <SmButton small icon="sun" kind="icon" class="ma2"></SmButton>
+        <SmButton small icon="archive" kind="icon" class="ma2"></SmButton>
       </div>
       `
     }}

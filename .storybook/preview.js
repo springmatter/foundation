@@ -1,5 +1,8 @@
-import "../plugin/styles/utilities.css";
-import "../plugin/styles/base.css";
+import "sanitize.css";
+import "sanitize.css/forms.css";
+import "sanitize.css/typography.css";
+import "../plugin/base.css";
+import "tachyons";
 import theme from "./theme.js";
 import { addDecorator, addParameters } from "@storybook/vue";
 

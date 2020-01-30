@@ -13,7 +13,7 @@ A standard searchbar with Fuse.js functionality.
 ## Standard Search
 
 <Preview>
-  <Story name="standard" height="40px">
+  <Story name="standard" height="50px">
     {{
       components: { SmSearch },
       data() {
@@ -29,7 +29,7 @@ A standard searchbar with Fuse.js functionality.
       },
       template: `
           <div>
-              <SmSearch style="width:300px" class="m-2"
+              <SmSearch style="width:300px" class="ma2"
                 v-model="results"
                 @input="display(results)"
                 :options="[{ name: 'Sally', type: 'dog', color: 'white'},

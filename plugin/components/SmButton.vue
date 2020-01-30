@@ -16,15 +16,13 @@ export default {
     SmIcon
   },
   props: {
-    /** Specifies the visual style of the button (primary|secondary|outline|icon) */
+    /** Specifies the visual style of the button (primary|secondary|ghost|icon) */
     kind: {
       type: String,
       required: false,
       default: "primary",
       validator: function(value) {
-        return (
-          ["primary", "secondary", "outline", "icon"].indexOf(value) !== -1
-        );
+        return ["primary", "secondary", "ghost", "icon"].indexOf(value) !== -1;
       }
     },
     /** Adds an icon to the button. Must be the name of a feather icon. */
@@ -45,11 +43,19 @@ export default {
 .SmButton {
   display: inline;
   text-align: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.SmButton:focus {
+  outline: #0038ff solid 2px;
+  outline-offset: 1px;
 }
 
 .primary,
 .secondary,
-.outline,
+.ghost,
 .icon {
   min-width: 176px;
   height: 48px;
@@ -62,14 +68,14 @@ export default {
 
 .primary > svg,
 .secondary > svg,
-.outline > svg {
+.ghost > svg {
   margin-left: 8px;
 }
 
 .SmButton:disabled,
 .primary:disabled,
 .secondary:disabled,
-.outline:disabled,
+.ghost:disabled,
 .icon:disabled {
   opacity: 0.25;
   cursor: not-allowed;
@@ -81,7 +87,7 @@ export default {
   opacity: 0.75;
 }
 
-.outline:active,
+.ghost:active,
 .icon:active {
   opacity: 0.5;
 }
@@ -106,8 +112,8 @@ export default {
   background: var(--gray3);
 }
 
-.outline,
-.outline:disabled:hover,
+.ghost,
+.ghost:disabled:hover,
 .icon,
 .icon:disabled:hover {
   background: white;
@@ -115,7 +121,7 @@ export default {
   border: 1px solid var(--secondary);
 }
 
-.outline:hover,
+.ghost:hover,
 .icon:hover {
   border: 1px solid var(--primary);
   color: var(--primary);

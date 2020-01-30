@@ -1,0 +1,62 @@
+import { Meta, Story, Preview, Props } from "@storybook/addon-docs/blocks";
+import SmIcon from "../plugin/components/SmIcon.vue";
+
+<Meta title="Components/SmIcon" component={SmIcon} />
+
+# SmIcon
+
+An icon component based on [feather-icons](https://feathericons.com/).
+
+<Props of={SmIcon} />
+
+## Icons
+
+<Preview>
+  <Story name="default" height="100px">
+    {{
+      components: { SmIcon },
+      template: `
+      <div class="flex justify-around flex-wrap">
+        <SmIcon name="plus" size="l" />
+        <SmIcon name="settings"  size="l" />
+        <SmIcon name="star" size="l" />
+        <SmIcon name="user" size="l" />
+        <SmIcon name="x-square" size="l" />
+        <SmIcon name="feather" size="l" />
+        <SmIcon name="box" size="l" />
+        <SmIcon name="eye" size="l" />
+        <SmIcon name="wind" size="l" />
+        <SmIcon name="watch" size="l" />
+        <SmIcon name="trash-2" size="l" />
+        <SmIcon name="tool" size="l" />
+        <div class="w-100 mt2"></div>
+        <SmIcon name="plus" />
+        <SmIcon name="settings" />
+        <SmIcon name="star" />
+        <SmIcon name="user" />
+        <SmIcon name="x-square" />
+        <SmIcon name="feather" />
+        <SmIcon name="box" />
+        <SmIcon name="eye" />
+        <SmIcon name="wind" />
+        <SmIcon name="watch" />
+        <SmIcon name="trash-2" />
+        <SmIcon name="tool" />
+        <div class="w-100 mt2"></div>
+        <SmIcon name="plus" size="s" />
+        <SmIcon name="settings"  size="s" />
+        <SmIcon name="star" size="s" />
+        <SmIcon name="user" size="s" />
+        <SmIcon name="x-square" size="s" />
+        <SmIcon name="feather" size="s" />
+        <SmIcon name="box" size="s" />
+        <SmIcon name="eye" size="s" />
+        <SmIcon name="wind" size="s" />
+        <SmIcon name="watch" size="s" />
+        <SmIcon name="trash-2" size="s" />
+        <SmIcon name="tool" size="s" />
+      </div>
+      `
+    }}
+  </Story>
+</Preview>

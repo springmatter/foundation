@@ -1,98 +1,99 @@
 <template>
-  <div class="maxWidth" :class="{ raiseZ: expanded }">
-    <div @click="expanded = !expanded">
-      <SmButton
-        icon="more-vertical"
-        class="icon"
-        :class="{ iconBorder: expanded }"
-      />
+  <div class="SmMore" :class="{ raiseZ: expanded }" @focusout="expanded=false">
+    <div
+      class="icon right-0"
+      kind="icon"
+      :class="{ iconBorder: expanded }"
+      @click="expanded = !expanded"
+    >
+      <SmIcon name="more-vertical" size="s" />
     </div>
     <div v-if="expanded" class="options">
-      <SmButton
-        v-if="info"
-        class="option"
-        @click="$emit('info'), (expanded = false)"
-        ><div class="pl-2">Info</div></SmButton
+      <div
+        v-for="(option, index) in options"
+        :key="index"
+        class="option pt-1 pb-1"
+        @click="
+          $emit(option.replace(' ', '_').toLowerCase()), (expanded = false)
+        "
       >
-      <SmButton
-        v-if="edit"
-        class="option"
-        @click="$emit('edit'), (expanded = false)"
-      >
-        <div class="pl-2">Edit</div></SmButton
-      >
-      <SmButton
-        v-if="del"
-        class="option"
-        @click="$emit('delete'), (expanded = false)"
-        ><div class="pl-2">Delete</div></SmButton
-      >
+        <div class="pl-2 pr-2">{{ option }}</div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import SmIcon from "./SmIcon.vue";
+
 export default {
   name: "SmMore",
+  components: {
+    SmIcon
+  },
+  props: {
+    /** A list of options to display on dropdown. */
+    options: Array,
+    required: true
+  },
   data: function() {
     return {
       expanded: false
     };
-  },
-  props: {
-    edit: Boolean,
-    del: Boolean,
-    info: Boolean
   }
 };
 </script>
 
 <style scoped>
 .icon {
-  border-radius: 2px;
-  cursor: pointer;
   background: white;
-  float: right;
   border: 1px solid white;
-  border-bottom: 0px solid white;
+  border-bottom: 0px;
   width: 32px;
   height: 32px;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
 }
+
 .iconBorder {
-  z-index: 60;
   border-radius: 2px 2px 0px 0px;
   border-top: 1px solid black;
   border-right: 1px solid black;
   border-left: 1px solid black;
+  z-index: 9999;
 }
+
 .options {
   border-radius: 2px 0px 2px 2px;
   border: 1px solid black;
   background: white;
+  position: absolute;
+  right: 0;
+  min-width: 80px;
   transform: translateY(31px);
-  position: absolute;
-  width: 100%;
-}
-.maxWidth {
-  width: 112px;
-  position: absolute;
 }
 .raiseZ {
-  z-index: 50;
+  z-index: 9998;
 }
 .option {
   border-radius: 0px;
-  height: 32px;
+  min-height: 32px;
   cursor: pointer;
-  width: 100%;
 }
-.option:focus,
-.icon:focus {
-  outline-offset: -2px;
-}
+
 .option:hover {
   background: var(--primary-hover);
   color: white;
+}
+
+.SmMore {
+  position: relative;
+  margin-left: auto;
+  border: 1px solid green;
+  min-width: 80px;
+  width: 100%;
 }
 </style>

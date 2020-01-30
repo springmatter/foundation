@@ -4,26 +4,20 @@
       :class="{ selectionClass: true, highlightSelection: expanded }"
       @click="expanded = !expanded"
     >
-      {{ selection }}
-      <SmIcon
-        class="SmDropdownChevron"
-        :class="{ chevronRotate: expanded }"
-        name="chevron-down"
-      />
+      {{ selection.display }}
+      <SmIcon class="SmDropdownChevron" :class="{ chevronRotate: expanded }" name="chevron-down" />
     </div>
     <div v-if="expanded" class="SmDropdownList">
       <div class="SmSearch" v-if="searchable">
-        <SmSearch v-model="results" :targets="targets" />
+        <SmSearch v-model="results" :options="options" />
       </div>
       <div class="results">
         <div
           v-for="(result, index) in results"
           :key="index"
           class="resultClass"
-          @click="selectTarget(result)"
-        >
-          {{ result }}
-        </div>
+          @click="select(result, index)"
+        >{{ displayKey ? result[displayKey] : result }}</div>
         <div v-if="results.length == 0" class="noResult">No Results Found</div>
       </div>
     </div>
@@ -31,34 +25,58 @@
 </template>
 
 <script>
+import SmSearch from "./SmSearch.vue";
+import SmIcon from "./SmIcon.vue";
+
 export default {
   name: "SmDropdown",
-  data: function() {
-    return {
-      expanded: false,
-      selection: "",
-      results: []
-    };
+  components: {
+    SmSearch,
+    SmIcon
   },
   props: {
-    targets: {
+    /** An array of Strings or Objects from which to select. */
+    options: {
       type: Array,
       required: true
     },
+    /** Flag to provide search functionality over the provided options. */
     searchable: {
       type: Boolean,
       required: false
+    },
+    /** Required if the 'options' is a list of Objects, such that this key will access the value in each option to display. */
+    displayKey: {
+      type: String,
+      required: false
     }
   },
+  data: function() {
+    return {
+      expanded: false,
+      selection: {
+        display: "",
+        return: null
+      },
+      results: []
+    };
+  },
   methods: {
-    selectTarget(result) {
-      this.selection = result;
-      this.$emit("input", this.selection);
+    select(result, index) {
+      if (this.displayKey) {
+        this.selection.display = result[this.displayKey];
+        this.selection.return = this.options[index];
+      } else {
+        this.selection.display = result;
+        this.selection.return = result;
+      }
+      this.$emit("input", this.selection.return);
+      this.results = this.options;
       this.expanded = false;
     }
   },
   created: function() {
-    this.results = this.targets;
+    this.results = this.options;
   }
 };
 </script>
@@ -66,8 +84,8 @@ export default {
 <style scoped>
 .SmDropdown {
   position: relative;
+  width: 100%;
 }
-
 .SmDropdownList {
   box-shadow: 0 0 0 1px var(--secondary);
   border-radius: 0px 0px 2px 2px;
@@ -78,7 +96,6 @@ export default {
   width: 100%;
   z-index: 9998;
 }
-
 .selectionClass {
   border: 1px solid var(--secondary);
   color: black;
@@ -88,23 +105,24 @@ export default {
   user-select: none;
   height: 40px;
 }
-
+.selectionClass:hover {
+  border: 1px solid var(--primary-hover);
+  box-shadow: 0 0 0 1px var(--primary-hover);
+  z-index: 9999;
+}
 .highlightSelection {
   border: 1px solid var(--primary-hover);
   box-shadow: 0 0 0 1px var(--primary-hover);
   z-index: 9999;
 }
-
 .SmDropdownChevron {
   position: relative;
   float: right;
   margin-top: 2px;
 }
-
 .chevronRotate {
   transform: rotate(180deg);
 }
-
 .SmSearch {
   position: relative;
   margin: 0px 12px;
@@ -112,25 +130,21 @@ export default {
   border-bottom: 1px solid black;
   border-radius: 0px;
 }
-
 .results {
   padding: 8px 0px;
   overflow: scroll;
   max-height: 176px;
 }
-
 .resultClass {
   padding: 4px 16px;
   border-radius: 0px;
   cursor: pointer;
   user-select: none;
 }
-
 .resultClass:hover {
   background: var(--primary-hover);
   color: white;
 }
-
 .noResult {
   color: grey;
   text-align: center;

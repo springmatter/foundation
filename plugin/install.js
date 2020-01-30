@@ -1,4 +1,4 @@
-import "./styles/utilities.css";
+import "tachyons";
 import "./styles/base.css";
 
 import SmApp from "./components/SmApp.vue";
@@ -14,7 +14,7 @@ import SmSearch from "./components/SmSearch.vue";
 import SmTag from "./components/SmTag.vue";
 
 export default {
-  install(Vue, options) {
+  install(Vue) {
     Vue.component("SmApp", SmApp);
     Vue.component("SmButton", SmButton);
     Vue.component("SmCard", SmCard);

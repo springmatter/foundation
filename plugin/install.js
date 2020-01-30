@@ -1,8 +1,8 @@
 import "sanitize.css";
 import "sanitize.css/forms.css";
 import "sanitize.css/typography.css";
+import "./base.css";
 import "tachyons";
-import "./styles/base.css";
 
 import SmApp from "./components/SmApp.vue";
 import SmButton from "./components/SmButton.vue";

@@ -1,0 +1,27 @@
+import { Meta, Story, Preview, Props } from "@storybook/addon-docs/blocks";
+import SmTag from "../plugin/components/SmTag.vue";
+
+<Meta title="Components/SmTag" component={SmTag} />
+
+# SmTag
+
+An inline tag component that can be colored with a hex value.
+
+<Props of={SmTag} />
+
+## Standard Tag
+
+<Preview>
+  <Story name="default" height="70px">
+    {{
+      components: { SmTag },
+      template: `
+      <div class="flex">
+        <SmTag color="123456">Here's a tag</SmTag>
+        <SmTag color="ff0000">Here's a tag</SmTag>
+        <SmTag color="0209EE">Here's a tag</SmTag>
+      </div>
+      `
+    }}
+  </Story>
+</Preview>

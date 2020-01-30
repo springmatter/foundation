@@ -1,0 +1,36 @@
+import { Meta, Story, Preview, Props } from "@storybook/addon-docs/blocks";
+import SmSpinner from "../plugin/components/SmSpinner.vue";
+
+<Meta title="Components/SmSpinner" component={SmSpinner} />
+
+# SmSpinner
+
+A loading spinner that centers itself to its closest parent with relative positioning. If position is added to the spinner it can be placed however you'd like.
+
+<Props of={SmSpinner} />
+
+## Standard Spinner
+
+<Preview>
+  <Story name="default" height="70px">
+    {{
+      components: { SmSpinner },
+      template: `
+      <SmSpinner />
+      `
+    }}
+  </Story>
+</Preview>
+
+## Small Spinner
+
+<Preview>
+  <Story name="small" height="70px">
+    {{
+      components: { SmSpinner },
+      template: `
+      <SmSpinner small/>
+      `
+    }}
+  </Story>
+</Preview>

@@ -1,6 +1,5 @@
 import { create } from "@storybook/theming/create";
 import logo from "./sm-logo-square.svg";
-import intro from "./intro.otf";
 
 export default create({
   base: "light",

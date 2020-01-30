@@ -4,6 +4,8 @@ import "sanitize.css/typography.css";
 import "./base.css";
 import "tachyons";
 
+import VueRouter from "vue-router";
+
 import SmApp from "./components/SmApp.vue";
 import SmButton from "./components/SmButton.vue";
 import SmCard from "./components/SmCard.vue";
@@ -29,5 +31,7 @@ export default {
     Vue.component("SmScrollBox", SmScrollBox);
     Vue.component("SmSearch", SmSearch);
     Vue.component("SmTag", SmTag);
+
+    Vue.use(VueRouter);
   }
 };

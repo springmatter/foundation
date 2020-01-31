@@ -10,10 +10,10 @@ A standard searchbar with Fuse.js functionality.
 
 <Props of={SmSearch} />
 
-## Standard Search
+## Search over Strings
 
 <Preview>
-  <Story name="standard" height="50px">
+  <Story name="simple search" height="300px">
     {{
       components: { SmSearch },
       data() {
@@ -21,22 +21,51 @@ A standard searchbar with Fuse.js functionality.
           results: []
         };
       },
-      methods: {
-        display(results) {
-          console.log(results);
-          action("searched", results);
-        }
+      template: `
+          <div>
+              <SmSearch style="width:300px" class="ma2"
+                v-model="results"
+                 :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava', 'Lemon', 'Grapefruit']"/>
+              <div class="ma2 mt3">
+              Results:
+                <div v-for="result in results" class="ma2">
+                  {{result}}
+                </div>
+              </div>
+          </div>
+          `
+    }}
+  </Story>
+</Preview>
+
+## Search over Objects
+
+Search is performed over values for each object.
+
+<Preview>
+  <Story name="object search" height="300px">
+    {{
+      components: { SmSearch },
+      data() {
+        return {
+          results: []
+        };
       },
       template: `
           <div>
               <SmSearch style="width:300px" class="ma2"
                 v-model="results"
-                @input="display(results)"
                 :options="[{ name: 'Sally', type: 'dog', color: 'white'},
                            { name: 'Wanda', type: 'dog', color: 'brown'},
                            { name: 'Jack', type: 'cat', color: 'black'}, 
                            { name: 'Pepper', type: 'dog', color: 'mixed'}, 
                            { name: 'Lucy', type: 'cat', color: 'white'}]"/>
+              <div class="ma2 mt3">
+              Results:
+                <div v-for="result in results" class="ma2">
+                  {{result}}
+                </div>
+              </div>
           </div>
           `
     }}

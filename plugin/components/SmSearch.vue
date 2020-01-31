@@ -2,7 +2,7 @@
   <div>
     <input
       type="search"
-      :autofocus="autofocus"
+      autofocus
       class="SmSearch"
       v-model="filter"
       placeholder="Search"
@@ -22,10 +22,6 @@ export default {
     options: {
       type: Array,
       required: true
-    },
-    autofocus: {
-      type: Boolean,
-      required: false
     }
   },
   data: function() {

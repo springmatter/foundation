@@ -11,17 +11,19 @@ A simple component for selecting an option from a dropdown list.
 
 ## Simple Select
 
-Lists with more than 10 options are scrollable.
+Lists with more than 10 single-lined options are scrollable.
 
 <Preview>
-  <Story name="simple" height="300px">
+  <Story name="simple" height="400px">
     {{
       components: { SmSelect },
       template: `
       <div class="flex">
-        <SmSelect class="m-2" style="width:300px;" 
-            :options="['apple', 'pear', 'banana', 'mango', 'guava', 'lemon', 'grapefruit']"/>
-        <SmSelect class="m-2" style="width:300px;" 
+        <SmSelect class="ma2" style="width:300px;flex-shrink:0" 
+            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava', 'Lemon', 'Grapefruit', 'Lime', 'Apricot', 'Orange', 'Plum']"/>
+        <SmSelect class="ma2" style="width:300px;flex-shrink:0" 
+            :options="['I am a really long and overflowing option', 'NA']"/>
+       <SmSelect class="ma2" style="width:300px;flex-shrink:0" 
             displayKey="name"
             :options="[{ name: 'Sally', type: 'dog', color: 'white'},
                        { name: 'Wanda', type: 'dog', color: 'brown'},
@@ -39,15 +41,15 @@ Lists with more than 10 options are scrollable.
 For an array of Objects, the search is performed over all keys.
 
 <Preview>
-  <Story name="searchable" height="300px">
+  <Story name="searchable" height="400px">
     {{
       components: { SmSelect },
       template: `
       <div class="flex">
-        <SmSelect class="m-2" style="width:300px;" 
+        <SmSelect class="ma2" style="width:300px;flex-shrink:0" 
             searchable 
-            :options="['apple', 'pear', 'banana', 'mango', 'guava', 'lemon', 'grapefruit']"/>
-         <SmSelect class="m-2" style="width:300px;" 
+            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava', 'Lemon', 'Grapefruit', 'Lime', 'Apricot', 'Orange', 'Plum']"/>
+         <SmSelect class="ma2" style="width:300px;flex-shrink:0" 
             searchable
             displayKey="name"
             :options="[{ name: 'Sally', type: 'dog', color: 'white'},
@@ -55,6 +57,82 @@ For an array of Objects, the search is performed over all keys.
                        { name: 'Jack', type: 'cat', color: 'black'}, 
                        { name: 'Pepper', type: 'dog', color: 'mixed'}, 
                        { name: 'Lucy', type: 'cat', color: 'white'}]" />
+      </div>
+      `
+    }}
+  </Story>
+</Preview>
+
+## Select Multiple
+
+<Preview>
+  <Story name="multiple" height="400px">
+    {{
+      components: { SmSelect },
+      template: `
+      <div class="flex">
+        <SmSelect class="ma2" style="width:300px;flex-shrink:0" 
+            multiple
+            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava', 'Lemon', 'Grapefruit', 'Lime', 'Apricot', 'Orange', 'Plum']"/>
+         <SmSelect class="ma2" style="width:300px;flex-shrink:0" 
+            multiple
+            displayKey="name"
+            :options="[{ name: 'Sally', type: 'dog', color: 'white'},
+                       { name: 'Wanda', type: 'dog', color: 'brown'},
+                       { name: 'Jack', type: 'cat', color: 'black'}, 
+                       { name: 'Pepper', type: 'dog', color: 'mixed'}, 
+                       { name: 'Lucy', type: 'cat', color: 'white'}]" />
+      </div>
+      `
+    }}
+  </Story>
+</Preview>
+
+## Searchable Select Multiple
+
+<Preview>
+  <Story name="searchable multiple" height="400px">
+    {{
+      components: { SmSelect },
+      template: `
+      <div class="flex">
+        <SmSelect class="ma2" style="width:300px;flex-shrink:0" 
+            searchable
+            multiple
+            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava', 'Lemon', 'Grapefruit', 'Lime', 'Apricot', 'Orange', 'Plum']"/>
+         <SmSelect class="ma2" style="width:300px;flex-shrink:0" 
+            searchable
+            multiple
+            displayKey="name"
+            :options="[{ name: 'Sally', type: 'dog', color: 'white'},
+                       { name: 'Wanda', type: 'dog', color: 'brown'},
+                       { name: 'Jack', type: 'cat', color: 'black'}, 
+                       { name: 'Pepper', type: 'dog', color: 'mixed'}, 
+                       { name: 'Lucy', type: 'cat', color: 'white'}]" />
+      </div>
+      `
+    }}
+  </Story>
+</Preview>
+
+## List of Selects
+
+When positioned in a stacked list, components are overlay one another and close on focus out.
+
+<Preview>
+  <Story name="listed" height="400px">
+    {{
+      components: { SmSelect },
+      template: `
+      <div>
+        <SmSelect class="ma2" style="width:300px;" 
+            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava']"/>
+        <SmSelect class="ma2" style="width:300px;" 
+            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava']"/>
+        <SmSelect class="ma2" style="width:300px;" 
+            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava']"/>
+        <SmSelect class="ma2" style="width:300px;" 
+            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava']"/>
       </div>
       `
     }}

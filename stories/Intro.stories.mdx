@@ -1,0 +1,24 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Introduction/Getting Started" />
+
+# Getting Started
+
+Springmatter Foundation is a Vue plugin that enables rapid interface development using the Springmatter Design System.
+
+## Install
+
+```
+yarn add @springmatter/foundation
+```
+
+## Import
+
+Import the Foundation plugin into your main file and register it. This must be done before calling new Vue(), and it will also automatically include our CSS files.
+
+```
+import Foundation from "@springmatter/foundation";
+Vue.use(Foundation);
+```
+
+All the components and CSS will be globally available to all Vue components under your root.

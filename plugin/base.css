@@ -1,9 +1,6 @@
 :root {
   --primary: #0038ff;
   --secondary: #141618;
-
-  --transition-short: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-  --transition-long: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .bg-primary {

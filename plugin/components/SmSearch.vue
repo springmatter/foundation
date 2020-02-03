@@ -8,6 +8,8 @@
       placeholder="Search"
       @keyup="filterResults"
       @search="filterResults"
+      @focusin="$emit('focusin')"
+      @focusout="$emit('focusout')"
     />
   </div>
 </template>

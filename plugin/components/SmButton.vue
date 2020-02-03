@@ -3,6 +3,8 @@
     class="SmButton"
     :class="[kind, { small: small }]"
     @click="$emit('click', $event)"
+    @focusin="$emit('focusin', $event)"
+    @focusout="$emit('focusout')"
   >
     <slot></slot>
     <SmIcon v-if="icon" :name="icon" :size="small || icon ? 's' : 'm'" />

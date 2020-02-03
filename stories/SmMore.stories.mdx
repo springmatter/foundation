@@ -16,36 +16,11 @@ A dropdown icon to display more options or information.
     {{
       components: { SmMore },
       template: `
-        <div class="flex m-2 p-2 relative align-center justify-center" style="border:1px solid black;width:600px;">
-            <SmMore :options="['1', '2', '3']"/>
-            <SmMore :options="['Edit', 'Delete', 'Change Location']"/>
-            <SmMore :options="['Monday Tuesday Wednesday Thuraday Friday Saturday Sunday', 'None']"/>
-        </div>
-        `
-    }}
-  </Story>
-</Preview>
-
-## Positioned More
-
-<Preview>
-  <Story name="positioned" height="300px">
-    {{
-      components: { SmMore },
-      template: `
-        <div class="m-2">
-            <div class="flex m-2 p-2 relative align-center justify-center" style="border:1px solid black;width:300px;padding-right: 38px;">
-                 A a a a a a a a a a a a a a a a a a a a a a a a 
-                 <SmMore style="top:16px; right:8px;" :options="['1', '2', '3']"/>
-            </div>
-            <div class="flex m-2 p-2 relative align-center justify-center" style="border:1px solid black;width:300px;">
-                 A a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a 
-                 <SmMore :options="['Monday Tuesday Wednesday Thuraday Friday Saturday Sunday', 'None']"/>
-            </div>
-             <div class="flex m-2 p-2 relative align-center justify-center" style="border:1px solid black;width:300px;">
-                 A a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a 
-                 <SmMore :options="['Edit', 'Delete', 'Change Location']"/>
-            </div>
+        <div class="flex m-2 pa2 w-33 flex-column" style="border:1px solid black;">
+            <div class="absolute w-25 mv1"> content content content content content content content content content content content content content content content content</div>
+            <SmMore :options="['1', '2', '3']" class="mv1 w4"/>
+            <SmMore :options="['Edit', 'Delete', 'Change Location']" class="mv1 w5"/>
+            <SmMore :options="['Monday Tuesday Wednesday Thuraday Friday Saturday Sunday', 'None']" class="mv1 w20"/>
         </div>
         `
     }}

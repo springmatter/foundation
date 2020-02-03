@@ -1,5 +1,9 @@
 <template>
-  <div class="SmMore" :class="{ raiseZ: expanded }" @focusout="expanded=false">
+  <div
+    class="SmMore"
+    :class="{ raiseZ: expanded }"
+    @focusout="expanded = false"
+  >
     <SmButton
       class="icon"
       kind="icon"
@@ -53,11 +57,12 @@ export default {
   width: 32px;
   height: 32px;
   display: flex;
-  right: 0;
+  margin-left: auto;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  position: absolute;
+  position: relative;
+  z-index: 9998;
 }
 
 .iconBorder {
@@ -65,7 +70,6 @@ export default {
   border-top: 1px solid black;
   border-right: 1px solid black;
   border-left: 1px solid black;
-  z-index: 9999;
 }
 
 .options {
@@ -75,10 +79,11 @@ export default {
   position: absolute;
   right: 0;
   min-width: 80px;
-  transform: translateY(31px);
+  z-index: 50;
+  transform: translateY(-1px);
 }
 .raiseZ {
-  z-index: 9998;
+  z-index: 9999;
 }
 .option {
   border-radius: 0px;
@@ -92,7 +97,7 @@ export default {
 }
 
 .SmMore {
-  position: absolute;
+  position: relative;
   width: 100%;
 }
 </style>

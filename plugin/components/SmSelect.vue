@@ -1,16 +1,5 @@
 <template>
-  <div
-    tabindex="2"
-    class="SmSelect"
-    @focusout="
-      start && !disabled
-        ? true
-        : !start && disabled
-        ? true
-        : (expanded = false),
-        check()
-    "
-  >
+  <div tabindex="3" class="SmSelect" id="SmSelect" @focusout="check()">
     <div
       class="selectionClass"
       :class="{ highlightSelection: expanded, grey: !selection.return }"
@@ -18,15 +7,16 @@
         searchable && !expanded
           ? (expanded = true)
           : searchable
-          ? (expanded = expanded)
+          ? true
           : (expanded = !expanded),
           !expanded ? (results = options) : true
       "
+      @click.stop
     >
       <div v-if="searchable && expanded" class="SmSearch">
         <SmSearch
-          @focusin="disabled = true"
-          @focusout="disabled = false"
+          tabindex="2"
+          @focusout="func()"
           v-model="results"
           :options="options"
           @click.native.stop
@@ -34,6 +24,7 @@
       </div>
       <div v-else class="selectBox">{{ selection.display }}</div>
       <SmButton
+        tabindex="1"
         :icon="expanded ? 'chevron-up' : 'chevron-down'"
         small
         kind="icon"
@@ -43,9 +34,8 @@
             (disabled = true),
             !expanded ? (results = options) : true
         "
-        @focusin="disabled = true"
-        @focusout="disabled = false"
-        @click.native.stop
+        @focusout="func()"
+        @click.native.stop.prevent
       />
     </div>
     <div v-if="expanded" class="list">
@@ -112,18 +102,29 @@ export default {
       },
       results: [],
       disabled: false,
-      start: true
+      start: true,
+      activeEl: ""
     };
   },
   methods: {
     check() {
-      // !start && disabled ? (start = true) : (expanded = false)
-      console.log("start", this.start);
-      console.log("disabled", this.disabled);
-      this.start = false;
+      console.log(document.getElementById("SmSelect"));
+      if (
+        document.getElementById("SmSelect").contains(document.activeElement)
+      ) {
+        console.log(document.activeElement);
+        // this.expanded = true;
+      } else {
+        console.log(document.activeElement);
+        // this.expanded = false;
+      }
     },
     test() {
-      console.log("f");
+      console.log(this.activeEl);
+    },
+    func() {
+      this.activeEl = document.activeElement.tagName;
+      console.log(document.activeElement.tagName);
     },
     select(result, index) {
       if (this.displayKey) {

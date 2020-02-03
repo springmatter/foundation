@@ -34,7 +34,7 @@
 }
 
 body {
-  color: #111111;
+  color: black;
 }
 
 :focus {
@@ -80,6 +80,11 @@ a:hover {
 
 [hidden] {
   display: none !important;
+}
+
+hr {
+  border-bottom: 1px solid black;
+  margin: 0;
 }
 
 /********** FORMS **********/

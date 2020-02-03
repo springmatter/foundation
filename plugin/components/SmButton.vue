@@ -5,7 +5,7 @@
     @click="$emit('click', $event)"
   >
     <slot></slot>
-    <SmIcon v-if="icon" :name="icon" :size="small ? 's' : 'm'" />
+    <SmIcon v-if="icon" :name="icon" :size="small || icon ? 's' : 'm'" />
   </button>
 </template>
 
@@ -22,7 +22,7 @@ export default {
       required: false,
       default: "primary",
       validator: function(value) {
-        return ["primary", "secondary", "ghost", "icon"].indexOf(value) !== -1;
+        return ["primary", "secondary", "icon"].indexOf(value) !== -1;
       }
     },
     /** Adds an icon to the button. Must be the name of a feather icon. */
@@ -41,22 +41,10 @@ export default {
 
 <style scoped>
 .SmButton {
-  display: inline;
-  text-align: left;
   border: none;
+  text-align: center;
   outline: none;
   cursor: pointer;
-}
-
-.SmButton:focus {
-  outline: #0038ff solid 2px;
-  outline-offset: 1px;
-}
-
-.primary,
-.secondary,
-.ghost,
-.icon {
   min-width: 176px;
   height: 48px;
   padding: 0 16px;
@@ -64,32 +52,28 @@ export default {
   align-items: center;
   justify-content: center;
   font-weight: 300;
+  transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
+    background 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-.primary > svg,
-.secondary > svg,
-.ghost > svg {
+.SmButton:focus {
+  outline: #0038ff solid 2px;
+  outline-offset: 1px;
+}
+
+.SmButton.primary > svg,
+.SmButton.secondary > svg,
+.SmButton.ghost > svg {
   margin-left: 8px;
 }
 
-.SmButton:disabled,
-.primary:disabled,
-.secondary:disabled,
-.ghost:disabled,
-.icon:disabled {
+.SmButton:disabled {
   opacity: 0.25;
   cursor: not-allowed;
 }
 
-.SmButton:active,
-.primary:active,
-.secondary:active {
+.SmButton:active {
   opacity: 0.75;
-}
-
-.ghost:active,
-.icon:active {
-  opacity: 0.5;
 }
 
 .primary,
@@ -99,41 +83,39 @@ export default {
 }
 
 .primary:hover {
-  background: var(--primary-hover);
+  background: #001b44;
+  transform: translateY(-1px);
 }
 
 .secondary,
 .secondary:disabled:hover {
-  background: var(--gray2);
+  background: white;
   color: black;
+  border: 1px solid black;
 }
 
-.secondary:hover {
-  background: var(--gray3);
-}
-
-.ghost,
-.ghost:disabled:hover,
 .icon,
 .icon:disabled:hover {
   background: white;
   color: black;
-  border: 1px solid var(--secondary);
+  border: 1px solid black;
+  height: 32px;
+  padding: 7px;
+  min-width: 0;
 }
 
-.ghost:hover,
+.secondary:hover,
 .icon:hover {
-  border: 1px solid var(--primary);
-  color: var(--primary);
+  border: 1px solid #001b44;
+  color: #001b44;
+}
+
+.secondary:hover {
+  transform: translateY(-1px);
 }
 
 .small {
   min-width: 120px;
   height: 32px;
-}
-
-.icon {
-  padding: 7px;
-  min-width: 0;
 }
 </style>

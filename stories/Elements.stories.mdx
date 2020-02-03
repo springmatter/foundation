@@ -1,0 +1,52 @@
+import { Meta, Preview } from "@storybook/addon-docs/blocks";
+
+<Meta title="Introduction/Elements" />
+
+# Elements
+
+These elements help us to keep our user experiences attractive and consistent. We are using an underlying CSS utility library called [Tachyons](https://tachyons.io/#style), which is fully exposed for use in your applications.
+
+For a full list of all utilities available, see the [Tachyons Docs](https://tachyons.io/docs/)
+
+## Spacing
+
+Simple spacing usually just requires some margin and padding utility classes. Here is a full list and explanation: [Tachyons Spacing](http://tachyons.io/docs/layout/spacing/).
+
+## Colors
+
+Tachyons provides a full set of colors that can be used for backgrounds and text color, however these should be used very sparingly, if at all, for most applications. Many of our components already have their necessary colors built in. Additionally we've added our own primary and secondary color CSS custom property and utility classes in Tachyons style.
+
+```
+:root {
+  --primary: #0038ff;
+  --secondary: #141618;
+}
+
+.bg-primary {
+  background: var(--primary);
+}
+
+.primary {
+  color: var(--primary);
+}
+
+.hover-primary:hover {
+  color: var(--primary);
+}
+
+.bg-secondary {
+  background: var(--secondary);
+}
+
+.secondary {
+  color: var(--secondary);
+}
+
+.hover-secondary:hover {
+  color: var(--secondary);
+}
+```
+
+## Typography
+
+We have set defaults for all HTML typography elements. In general, the user of Foundation should almost never declare custom typography rules in their CSS, and should instead just choose the appropriate tag for their use case.

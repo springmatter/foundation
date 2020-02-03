@@ -2,6 +2,7 @@
   <div>
     <input
       type="search"
+      autofocus
       class="SmSearch"
       v-model="filter"
       placeholder="Search"

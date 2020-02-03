@@ -1,13 +1,12 @@
 <template>
   <div class="SmMore" :class="{ raiseZ: expanded }" @focusout="expanded=false">
-    <div
-      class="icon right-0"
+    <SmButton
+      class="icon"
       kind="icon"
+      icon="more-vertical"
       :class="{ iconBorder: expanded }"
       @click="expanded = !expanded"
-    >
-      <SmIcon name="more-vertical" size="s" />
-    </div>
+    ></SmButton>
     <div v-if="expanded" class="options">
       <div
         v-for="(option, index) in options"
@@ -25,11 +24,13 @@
 
 <script>
 import SmIcon from "./SmIcon.vue";
+import SmButton from "./SmButton.vue";
 
 export default {
   name: "SmMore",
   components: {
-    SmIcon
+    SmIcon,
+    SmButton
   },
   props: {
     /** A list of options to display on dropdown. */
@@ -52,6 +53,7 @@ export default {
   width: 32px;
   height: 32px;
   display: flex;
+  right: 0;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -90,10 +92,7 @@ export default {
 }
 
 .SmMore {
-  position: relative;
-  margin-left: auto;
-  border: 1px solid green;
-  min-width: 80px;
+  position: absolute;
   width: 100%;
 }
 </style>

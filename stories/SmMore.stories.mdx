@@ -11,16 +11,42 @@ A dropdown icon to display more options or information.
 
 ## Standard More
 
+Specify a width for the SmMore component to best fit the text in the options.
+
 <Preview>
   <Story name="standard" height="300px">
     {{
       components: { SmMore },
+      data() {
+        return {
+          event: null
+        };
+      },
+      methods: {
+        setEvent(str) {
+          console.log("hj");
+          this.event = str;
+        }
+      },
       template: `
-        <div class="flex m-2 pa2 w-33 flex-column" style="border:1px solid black;">
-            <div class="absolute w-25 mv1"> content content content content content content content content content content content content content content content content</div>
-            <SmMore :options="['1', '2', '3']" class="mv1 w4"/>
-            <SmMore :options="['Edit', 'Delete', 'Change Location']" class="mv1 w5"/>
-            <SmMore :options="['Monday Tuesday Wednesday Thuraday Friday Saturday Sunday', 'None']" class="mv1 w20"/>
+        <div>
+            <div class="flex ma2 pa2 w-33 flex-column" style="border:1px solid black;">
+                <SmMore class="mv1 w4" 
+                    :options="['First', 'Second']"
+                    v-on:first="setEvent('first')"
+                    v-on:second="event='second'"/>
+                <SmMore  class="mv1 w5" 
+                    :options="['Edit', 'Delete', 'Change Location']"
+                    v-on:edit="setEvent('edit')"
+                    v-on:delete="event='delete'"
+                    v-on:change_location="event='change_location'"/>
+                <SmMore class="mv1 w20"
+                    :options="['Monday Tuesday Wednesday Thursday Friday Saturday Sunday', 'None']"
+                    />
+            </div>
+            <div v-if="event" class="ma2">
+                Event: {{ event }}
+            </div>
         </div>
         `
     }}

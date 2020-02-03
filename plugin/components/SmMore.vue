@@ -15,12 +15,12 @@
       <div
         v-for="(option, index) in options"
         :key="index"
-        class="option pt-1 pb-1"
+        class="option pv1"
         @click="
           $emit(option.replace(' ', '_').toLowerCase()), (expanded = false)
         "
       >
-        <div class="pl-2 pr-2">{{ option }}</div>
+        <div class="ph2">{{ option }}</div>
       </div>
     </div>
   </div>
@@ -87,12 +87,13 @@ export default {
 }
 .option {
   border-radius: 0px;
-  min-height: 32px;
+  min-height: 28px;
   cursor: pointer;
+  line-height: 28px;
 }
 
 .option:hover {
-  background: var(--primary-hover);
+  background: #0038ff;
   color: white;
 }
 

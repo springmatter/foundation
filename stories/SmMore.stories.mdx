@@ -11,7 +11,7 @@ A dropdown icon to display more options or information.
 
 ## Standard More
 
-Specify a width for the SmMore component to best fit the text in the options.
+Specify a width class for the SmMore component to best fit the text in the options.
 
 <Preview>
   <Story name="standard" height="300px">
@@ -30,17 +30,17 @@ Specify a width for the SmMore component to best fit the text in the options.
       },
       template: `
         <div>
-            <div class="flex ma2 pa2 w-33 flex-column" style="border:1px solid black;">
-                <SmMore class="mv1 w4" 
+            <div class="ma2 pa2 w-50 flex flex-column ba">
+                <SmMore class="mv1 w4" style="margin-left:auto;"
                     :options="['First', 'Second']"
                     v-on:first="setEvent('first')"
                     v-on:second="event='second'"/>
-                <SmMore  class="mv1 w5" 
+                <SmMore  class="mv1 w5" style="margin-left:auto;"
                     :options="['Edit', 'Delete', 'Change Location']"
                     v-on:edit="setEvent('edit')"
                     v-on:delete="event='delete'"
                     v-on:change_location="event='change_location'"/>
-                <SmMore class="mv1 w20"
+                <SmMore class="mv1 w-100"
                     :options="['Monday Tuesday Wednesday Thursday Friday Saturday Sunday', 'None']"
                     />
             </div>

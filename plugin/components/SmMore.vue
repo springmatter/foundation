@@ -8,7 +8,7 @@
       class="icon"
       kind="icon"
       icon="more-vertical"
-      :class="{ iconBorder: expanded }"
+      :class="{ borderCut: expanded, borderFull: !expanded }"
       @click="expanded = !expanded"
     ></SmButton>
     <div v-if="expanded" class="options">
@@ -52,8 +52,6 @@ export default {
 <style scoped>
 .icon {
   background: white;
-  border: 1px solid white;
-  border-bottom: 0px;
   width: 32px;
   height: 32px;
   display: flex;
@@ -65,11 +63,32 @@ export default {
   z-index: 9998;
 }
 
-.iconBorder {
+.icon:focus {
+  outline: none;
+}
+
+.borderFull,
+.icon:hover {
+  border: 1px solid white;
+}
+
+.borderFull:hover {
+  border: 1px solid black;
+}
+.borderFull:focus {
+  border: 1px solid black;
+  outline-style: solid;
+  outline-color: #0038ff;
+  outline-width: 2px;
+}
+
+.borderCut,
+.borderCut:hover {
   border-radius: 2px 2px 0px 0px;
   border-top: 1px solid black;
   border-right: 1px solid black;
   border-left: 1px solid black;
+  border-bottom: 1px solid white;
 }
 
 .options {
@@ -99,6 +118,6 @@ export default {
 
 .SmMore {
   position: relative;
-  width: 100%;
+  min-width: 128px;
 }
 </style>

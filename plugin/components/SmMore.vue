@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import { action } from "@storybook/addon-actions";
 import SmButton from "./SmButton.vue";
 
 export default {

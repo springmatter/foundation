@@ -1,4 +1,5 @@
 import { Meta, Story, Preview, Props } from "@storybook/addon-docs/blocks";
+import { action } from "@storybook/addon-actions";
 import SmMore from "../plugin/components/SmMore.vue";
 
 <Meta title="Components/SmMore" component={SmMore} />
@@ -19,33 +20,25 @@ Specify a width class for the SmMore component to best fit the text in the optio
       components: { SmMore },
       data() {
         return {
-          event: null
+          event: "som"
         };
       },
       methods: {
         setEvent(str) {
-          console.log("hj");
           this.event = str;
         }
       },
       template: `
         <div>
-            <div class="ma2 pa2 w-50 flex flex-column ba">
-                <SmMore class="mv1 w4" style="margin-left:auto;"
-                    :options="['First', 'Second']"
-                    v-on:first="setEvent('first')"
-                    v-on:second="event='second'"/>
-                <SmMore  class="mv1 w5" style="margin-left:auto;"
+            <div class="ma2 pa2 w-20">
+                <SmMore  class="mv2 w5" style="margin-left:auto;"
                     :options="['Edit', 'Delete', 'Change Location']"
                     v-on:edit="setEvent('edit')"
-                    v-on:delete="event='delete'"
+                    v-on:delete="{action('delete')}"
                     v-on:change_location="event='change_location'"/>
-                <SmMore class="mv1 w-100"
+                <SmMore class="mv2 w-100"
                     :options="['Monday Tuesday Wednesday Thursday Friday Saturday Sunday', 'None']"
                     />
-            </div>
-            <div v-if="event" class="ma2">
-                Event: {{ event }}
             </div>
         </div>
         `

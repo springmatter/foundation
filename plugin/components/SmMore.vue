@@ -27,13 +27,12 @@
 </template>
 
 <script>
-import SmIcon from "./SmIcon.vue";
+import { action } from "@storybook/addon-actions";
 import SmButton from "./SmButton.vue";
 
 export default {
   name: "SmMore",
   components: {
-    SmIcon,
     SmButton
   },
   props: {
@@ -83,7 +82,8 @@ export default {
 }
 
 .borderCut,
-.borderCut:hover {
+.borderCut:hover,
+.borderCut:focus {
   border-radius: 2px 2px 0px 0px;
   border-top: 1px solid black;
   border-right: 1px solid black;

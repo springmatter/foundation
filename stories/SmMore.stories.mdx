@@ -30,8 +30,8 @@ Specify a width class for the SmMore component to best fit the text in the optio
       },
       template: `
         <div>
-            <div class="ma2 pa2 w-20">
-                <SmMore  class="mv2 w5" style="margin-left:auto;"
+            <div class="ma2 pa2 absolute">
+                <SmMore  class="mv2 w5"
                     :options="['Edit', 'Delete', 'Change Location']"
                     v-on:edit="setEvent('edit')"
                     v-on:delete="{action('delete')}"

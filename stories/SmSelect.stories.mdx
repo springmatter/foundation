@@ -63,58 +63,6 @@ For an array of Objects, the search is performed over all keys.
   </Story>
 </Preview>
 
-## Select Multiple
-
-<Preview>
-  <Story name="multiple" height="400px">
-    {{
-      components: { SmSelect },
-      template: `
-      <div class="flex">
-        <SmSelect class="ma2" style="width:300px;flex-shrink:0" 
-            multiple
-            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava', 'Lemon', 'Grapefruit', 'Lime', 'Apricot', 'Orange', 'Plum']"/>
-         <SmSelect class="ma2" style="width:300px;flex-shrink:0" 
-            multiple
-            displayKey="name"
-            :options="[{ name: 'Sally', type: 'dog', color: 'white'},
-                       { name: 'Wanda', type: 'dog', color: 'brown'},
-                       { name: 'Jack', type: 'cat', color: 'black'}, 
-                       { name: 'Pepper', type: 'dog', color: 'mixed'}, 
-                       { name: 'Lucy', type: 'cat', color: 'white'}]" />
-      </div>
-      `
-    }}
-  </Story>
-</Preview>
-
-## Searchable Select Multiple
-
-<Preview>
-  <Story name="searchable multiple" height="400px">
-    {{
-      components: { SmSelect },
-      template: `
-      <div class="flex">
-        <SmSelect class="ma2" style="width:300px;flex-shrink:0" 
-            searchable
-            multiple
-            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava', 'Lemon', 'Grapefruit', 'Lime', 'Apricot', 'Orange', 'Plum']"/>
-         <SmSelect class="ma2" style="width:300px;flex-shrink:0" 
-            searchable
-            multiple
-            displayKey="name"
-            :options="[{ name: 'Sally', type: 'dog', color: 'white'},
-                       { name: 'Wanda', type: 'dog', color: 'brown'},
-                       { name: 'Jack', type: 'cat', color: 'black'}, 
-                       { name: 'Pepper', type: 'dog', color: 'mixed'}, 
-                       { name: 'Lucy', type: 'cat', color: 'white'}]" />
-      </div>
-      `
-    }}
-  </Story>
-</Preview>
-
 ## List of Selects
 
 When positioned in a stacked list, components are overlay one another and close on focus out.
@@ -125,8 +73,6 @@ When positioned in a stacked list, components are overlay one another and close 
       components: { SmSelect },
       template: `
       <div>
-        <SmSelect class="ma2" style="width:300px;" 
-            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava']"/>
         <SmSelect class="ma2" style="width:300px;" 
             :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava']"/>
         <SmSelect class="ma2" style="width:300px;" 

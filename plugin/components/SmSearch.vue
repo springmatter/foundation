@@ -8,8 +8,6 @@
       placeholder="Search"
       @keyup="filterResults"
       @search="filterResults"
-      @focusin="$emit('focusin')"
-      @focusout="$emit('focusout')"
     />
   </div>
 </template>
@@ -17,6 +15,7 @@
 <script>
 import SmIcon from "./SmIcon.vue";
 import * as Fuse from "fuse.js";
+
 export default {
   name: "SmSearch",
   props: {

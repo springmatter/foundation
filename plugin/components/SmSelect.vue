@@ -1,75 +1,75 @@
 <template>
-  <div tabindex="3" class="SmSelect" id="SmSelect" @focusout="check()">
-    <div
-      class="selectionClass"
-      :class="{ highlightSelection: expanded, grey: !selection.return }"
+  <div tabindex="3" class="SmSelect" id="SmSelect" @focusout="focusOut">
+    <input
+      v-if="searchable && !selection.return"
+      autocomplete="off"
+      placeholder="Select..."
+      class="selectionClass w-100"
+      :class="{ highlightSelection: expanded, raiseZ: expanded }"
       @click="
-        searchable && !expanded
-          ? (expanded = true)
-          : searchable
-          ? true
-          : (expanded = !expanded),
-          !expanded ? (results = options) : true
+        !expanded
+          ? ((results = options), (selection.return = null), (expanded = true))
+          : (expanded = false),
+          results.length == 0 ? (filter = '') : true
       "
-      @click.stop
+      v-model="filter"
+      @keyup="filterResults"
+      id="input"
+      value="value"
+    />
+    <input
+      v-else-if="searchable && selection.return"
+      class="selectionClass w-100"
+      autocomplete="off"
+      @click="
+        !expanded
+          ? ((results = options),
+            (selection.return = null),
+            (expanded = true),
+            (filter = selection.display))
+          : (expanded = false)
+      "
+      :value="selection.display"
+    />
+    <div
+      v-else
+      class="selectionClass"
+      :class="{
+        highlightSelection: expanded,
+        grey: !selection.return,
+        raiseZ: expanded
+      }"
+      @click="expanded = !expanded"
     >
-      <div v-if="searchable && expanded" class="SmSearch">
-        <SmSearch
-          tabindex="2"
-          @focusout="func()"
-          v-model="results"
-          :options="options"
-          @click.native.stop
-        />
-      </div>
-      <div v-else class="selectBox">{{ selection.display }}</div>
-      <SmButton
-        tabindex="1"
-        :icon="expanded ? 'chevron-up' : 'chevron-down'"
-        small
-        kind="icon"
-        class="chevron"
-        @click="
-          (expanded = !expanded),
-            (disabled = true),
-            !expanded ? (results = options) : true
-        "
-        @focusout="func()"
-        @click.native.stop.prevent
-      />
+      {{ selection.display }}
     </div>
-    <div v-if="expanded" class="list">
-      <div class="results">
-        <div
-          v-for="(result, index) in results"
-          :key="index"
-          :class="{
-            resultClassSelected: multiple && result.selected,
-            resultClass: !multiple || (multiple && !result.selected)
-          }"
-          @click="
-            multiple ? selectMultiple(result, index) : select(result, index)
-          "
-        >
-          {{
-            displayKey ? result[displayKey] : multiple ? result["name"] : result
-          }}
-        </div>
-        <div v-if="results.length == 0" class="noResult">No Results Found</div>
+    <SmIcon
+      class="chevron"
+      :class="{ raiseZ: expanded }"
+      :name="expanded ? 'chevron-up' : 'chevron-down'"
+    />
+    <div v-if="expanded" class="results">
+      <div
+        v-for="(result, index) in results"
+        :key="index"
+        class="resultClass"
+        @click="select(result, index)"
+      >
+        {{ displayKey ? result[displayKey] : result }}
       </div>
+      <div v-if="results.length == 0" class="noResult">No Results Found</div>
     </div>
   </div>
 </template>
 
 <script>
-import SmSearch from "./SmSearch.vue";
-import SmButton from "./SmButton.vue";
+import SmIcon from "./SmIcon.vue";
+import * as Fuse from "fuse.js";
 
 export default {
   name: "SmSelect",
   components: {
-    SmSearch,
-    SmButton
+    SmIcon
   },
   props: {
     /** An array of Strings or Objects from which to select. */
@@ -86,11 +86,6 @@ export default {
     searchable: {
       type: Boolean,
       required: false
-    },
-    /** Flag to allow selecting multiple options. */
-    multiple: {
-      type: Boolean,
-      required: false
     }
   },
   data: function() {
@@ -101,30 +96,36 @@ export default {
         return: null
       },
       results: [],
-      disabled: false,
-      start: true,
-      activeEl: ""
+      filter: ""
     };
   },
+  computed: {
+    settings: function() {
+      // Check if 'options' is a list of strings or dictionaries to set correct keys.
+      let keys =
+        typeof this.options[0] == "string" ? [] : Object.keys(this.options[0]);
+      return {
+        shouldSort: true,
+        threshold: 0.3,
+        location: 0,
+        distance: 100,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        keys: keys
+      };
+    },
+    fuse: function() {
+      return new Fuse(this.options, this.settings);
+    }
+  },
   methods: {
-    check() {
-      console.log(document.getElementById("SmSelect"));
-      if (
-        document.getElementById("SmSelect").contains(document.activeElement)
-      ) {
-        console.log(document.activeElement);
-        // this.expanded = true;
-      } else {
-        console.log(document.activeElement);
-        // this.expanded = false;
+    focusOut(ev) {
+      if (!this.$el.contains(ev.relatedTarget)) {
+        this.expanded = false;
+        if (this.results.length == 0) {
+          this.filter = "";
+        }
       }
-    },
-    test() {
-      console.log(this.activeEl);
-    },
-    func() {
-      this.activeEl = document.activeElement.tagName;
-      console.log(document.activeElement.tagName);
     },
     select(result, index) {
       if (this.displayKey) {
@@ -138,58 +139,26 @@ export default {
       this.results = this.options;
       this.expanded = false;
     },
-    selectMultiple(result, index) {
-      result.selected = !result.selected;
-      let selection = this.displayKey
-        ? result[this.displayKey]
-        : result["name"];
-      if (result.selected) {
-        if (!this.selection.return) {
-          this.selection.display = selection;
-          this.selection.return = [];
-        } else {
-          this.selection.display = selection + ", " + this.selection.display;
-        }
-        this.selection.return.push(this.displayKey ? result : selection);
-      } else {
-        this.selection.return.splice(
-          this.selection.return.indexOf(this.displayKey ? result : selection),
-          1
-        );
-        if (this.selection.return.length == 0) {
-          this.selection.return = null;
-          this.selection.display = "Select...";
-        }
-        this.selection.display = this.selection.display.replace(
-          selection + ", ",
-          ""
-        );
-        this.selection.display = this.selection.display.replace(
-          ", " + selection,
-          ""
-        );
-        this.selection.display = this.selection.display.replace(selection, "");
+    filterResults() {
+      if (!this.expanded) {
+        this.expanded = true;
       }
-      this.$emit("input", this.selection.return);
-      this.$forceUpdate();
-    },
-    reset() {
-      this.results = this.options;
-      if (this.multiple) {
-        if (this.displayKey) {
-          for (let i in this.results) {
-            this.results[i].selected = false;
-          }
-        } else {
-          for (let i in this.results) {
-            this.results[i] = { name: this.results[i], selected: false };
+      // If filter is empty, return all results
+      if (this.filter == "") {
+        this.results = this.options;
+      } else {
+        this.results = this.fuse.search(this.filter);
+        // If list is a string, access indexed values.
+        if (!this.displayKey) {
+          for (var i = 0; i < this.results.length; i++) {
+            this.results[i] = this.options[this.results[i]];
           }
         }
       }
     }
   },
   created: function() {
-    this.reset();
+    this.results = this.options;
   }
 };
 </script>
@@ -202,58 +171,47 @@ export default {
 .SmSelect:focus {
   outline: none !important;
 }
-.list {
-  box-shadow: 0 0 0 1px var(--secondary);
+.selectionClass {
+  border: 1px solid black;
+  background: white;
+  position: relative;
+  padding: 8px 32px 8px 16px;
+  user-select: none;
+  display: flex;
+  min-height: 40px;
+  line-height: 22px;
+  justify-content: space-between;
+}
+.selectionClass:hover,
+.highlightSelection {
+  border: 1px solid #0038ff;
+  box-shadow: 0 0 0 1px #0038ff;
+}
+
+.chevron {
+  position: absolute;
+  border: 1px solid white;
+  top: 0;
+  right: 0;
+  z-index: 9992;
+  margin: 10px 8px;
+  pointer-events: none;
+}
+.results {
+  box-shadow: 0 0 0 1px black;
   border-radius: 0px 0px 2px 2px;
   color: black;
   background: white;
   margin-top: -2px;
   position: absolute;
   width: 100%;
-  z-index: 9998;
-}
-.selectionClass {
-  border: 1px solid var(--secondary);
-  background: white;
-  position: relative;
-  padding: 8px 8px 8px 16px;
-  user-select: none;
-  display: flex;
-  justify-content: space-between;
-}
-.selectionClass:hover,
-.highlightSelection {
-  border: 1px solid var(--primary-hover);
-  box-shadow: 0 0 0 1px var(--primary-hover);
-  z-index: 9999;
-}
-.selectBox {
-  position: relative;
-  height: 32px;
-  line-height: 32px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-  margin-right: 8px;
-}
-::-webkit-scrollbar {
-  width: 0em;
-  height: 0em;
-}
-.chevron {
-  position: relative;
-  border: 1px solid white;
-  flex-shrink: 0;
-}
-.SmSearch {
-  width: 100%;
-  margin-right: 8px;
-  color: black;
-}
-.results {
+  z-index: 9993;
   padding: 8px 0px 6px 0px;
   overflow: scroll;
   max-height: 296px;
+}
+.raiseZ {
+  z-index: 9999;
 }
 .resultClass {
   padding: 4px 16px;
@@ -264,18 +222,8 @@ export default {
   margin-bottom: 2px;
 }
 .resultClass:hover {
-  background: var(--primary-hover);
+  background: #0038ff;
   color: white;
-}
-.resultClassSelected {
-  padding: 4px 16px;
-  border-radius: 0px;
-  cursor: pointer;
-  user-select: none;
-  background: var(--primary-hover);
-  color: white;
-  margin-top: 2px;
-  margin-bottom: 2px;
 }
 .noResult {
   color: grey;

@@ -1,0 +1,31 @@
+import { Meta, Story, Preview, Props } from "@storybook/addon-docs/blocks";
+import SmNav from "../plugin/components/SmNav.vue";
+import StoryRouter from "storybook-vue-router";
+
+<Meta title="Components/SmNav" component={SmNav} decorators={[StoryRouter()]} />
+
+# SmNav
+
+A small navigation element that is automatically positioned. Put this in your `App.vue`.
+
+<Props of={SmNav} />
+
+## Example
+
+<Preview>
+  <Story name="default" height="70px">
+    {{
+      components: { SmNav },
+      template: `
+      <div class="vw-100 vh-100 ba">
+      <SmNav title="My App" :links="[
+        { icon: 'feather', route: '/feather' },
+        { icon: 'key', route: '/key' },
+        { icon: 'moon', route: '/moon' },
+        { icon: 'settings', route: '/settings' }
+      ]" />
+      </div>
+      `
+    }}
+  </Story>
+</Preview>

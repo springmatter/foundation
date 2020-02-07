@@ -60,7 +60,6 @@ export default {
   font-size: 14px;
   font-weight: 600;
   display: inline-flex;
-  border: 1px solid red;
 }
 
 .SmNavLink {

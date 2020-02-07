@@ -19,24 +19,6 @@ A standard button component with optinal icon.
       <div class="flex">
         <SmButton class="ma2">Primary</SmButton>
         <SmButton kind="secondary" class="ma2">Secondary</SmButton>
-        <SmButton kind="ghost" class="ma2">Ghost</SmButton>
-      </div>
-      `
-    }}
-  </Story>
-</Preview>
-
-## Small Buttons
-
-<Preview>
-  <Story name="small" height="50px">
-    {{
-      components: { SmButton },
-      template: `
-      <div class="flex">
-        <SmButton small class="ma2">Primary</SmButton>
-        <SmButton small kind="secondary" class="ma2">Secondary</SmButton>
-        <SmButton small kind="ghost" class="ma2">Ghost</SmButton>
       </div>
       `
     }}
@@ -53,14 +35,10 @@ A standard button component with optinal icon.
       <div class="flex flex-wrap">
         <SmButton icon="plus" class="ma2">Primary</SmButton>
         <SmButton icon="sun" kind="secondary" class="ma2">Secondary</SmButton>
-        <SmButton icon="archive" kind="ghost" class="ma2">Ghost</SmButton>
         <div class="w-100"></div>
-        <SmButton small icon="plus" class="ma2">Primary</SmButton>
-        <SmButton small icon="sun" kind="secondary" class="ma2">
+        <SmButton icon="plus" class="ma2">Primary</SmButton>
+        <SmButton icon="sun" kind="secondary" class="ma2">
           Secondary
-        </SmButton>
-        <SmButton small icon="archive" kind="ghost" class="ma2">
-          Ghost
         </SmButton>
       </div>
       `
@@ -78,10 +56,29 @@ Prop `kind` must be set to `icon` and prop `icon` must be specified.
       components: { SmButton },
       template: `
       <div class="flex">
-        <SmButton small icon="plus" kind="icon" class="ma2"></SmButton>
-        <SmButton small icon="feather" kind="icon" class="ma2"></SmButton>
-        <SmButton small icon="sun" kind="icon" class="ma2"></SmButton>
-        <SmButton small icon="archive" kind="icon" class="ma2"></SmButton>
+        <SmButton icon="plus" kind="icon" tooltip="Plus"></SmButton>
+        <SmButton icon="feather" kind="icon" tooltip="Feather"></SmButton>
+        <SmButton icon="sun" kind="icon" tooltip="Sun"></SmButton>
+        <SmButton icon="archive" kind="icon" tooltip="Archive"></SmButton>
+      </div>
+      `
+    }}
+  </Story>
+</Preview>
+
+## `<button>` only Buttons
+
+If you just need to make something clickable and focusable, a standard `<button>` tag is useful. `<button>` should be used instead of `<a>` or `<router-link>` when the clickable element doesn't toggle a route change or a page location change on a page of text. Using `<button>` to wrap clickable elements makes them more accessible by default.
+
+<Preview>
+  <Story name="button" height="120px">
+    {{
+      components: { SmButton },
+      template: `
+      <div class="flex">
+        <button class="ma2">
+          <small>A simple button</small>
+        </button>
       </div>
       `
     }}

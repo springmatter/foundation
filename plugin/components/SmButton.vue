@@ -1,13 +1,8 @@
 <template>
-  <button
-    class="SmButton"
-    :class="[kind, { small: small }]"
-    @click="$emit('click', $event)"
-    @focusin="$emit('focusin', $event)"
-    @focusout="$emit('focusout')"
-  >
+  <button class="SmButton" :class="kind" @click="$emit('click', $event)">
     <slot></slot>
-    <SmIcon v-if="icon" :name="icon" :size="small || icon ? 's' : 'm'" />
+    <SmIcon v-if="icon" :name="icon" :size="kind === 'icon' ? 's' : 'm'" />
+    <small v-if="tooltip" class="SmButtonTooltip">{{ tooltip }}</small>
   </button>
 </template>
 
@@ -18,7 +13,7 @@ export default {
     SmIcon
   },
   props: {
-    /** Specifies the visual style of the button (primary|secondary|ghost|icon) */
+    /** Specifies the visual style of the button (primary|secondary|icon) */
     kind: {
       type: String,
       required: false,
@@ -32,9 +27,9 @@ export default {
       type: String,
       required: false
     },
-    /** Makes the button smaller */
-    small: {
-      type: Boolean,
+    /** Adds a tooltip with the specified text. Most icon buttons should have tooltips */
+    tooltip: {
+      type: String,
       required: false
     }
   }
@@ -47,15 +42,20 @@ export default {
   text-align: center;
   outline: none;
   cursor: pointer;
-  min-width: 176px;
-  height: 48px;
+  min-width: 40px;
+  height: 40px;
   padding: 0 16px;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   font-weight: 300;
   transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
     background 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.SmButton:hover {
+  text-decoration: none;
 }
 
 .SmButton:focus {
@@ -78,46 +78,71 @@ export default {
   opacity: 0.75;
 }
 
-.primary,
-.primary:disabled:hover {
+.SmButton.primary,
+.SmButton.primary:disabled:hover {
   background: var(--primary);
   color: white;
 }
 
-.primary:hover {
+.SmButton.primary:hover {
   background: #001b44;
   transform: translateY(-1px);
 }
 
-.secondary,
-.secondary:disabled:hover {
+.SmButton.secondary,
+.SmButton.secondary:disabled:hover {
   background: white;
   color: black;
   border: 1px solid black;
 }
 
-.icon,
-.icon:disabled:hover {
+.SmButton.icon,
+.SmButton.icon:disabled:hover {
   background: white;
   color: black;
-  border: 1px solid black;
   height: 32px;
-  padding: 7px;
-  min-width: 0;
+  padding: 0;
 }
 
-.secondary:hover,
-.icon:hover {
-  border: 1px solid #001b44;
-  color: #001b44;
+.SmButton.secondary:hover,
+.SmButton.icon:hover {
+  color: var(--primary);
 }
 
-.secondary:hover {
+.SmButton.secondary:hover {
+  border: 1px solid var(--primary);
   transform: translateY(-1px);
 }
 
-.small {
-  min-width: 120px;
-  height: 32px;
+.SmButtonTooltip {
+  min-height: 32px;
+  white-space: nowrap;
+  padding: 0 8px;
+  background: black;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  display: none;
+  bottom: -32px;
+}
+
+.SmButtonTooltip::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: -4px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid black;
+  border-radius: 0;
+}
+
+.SmButton:hover .SmButtonTooltip {
+  display: flex;
 }
 </style>

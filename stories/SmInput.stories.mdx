@@ -1,0 +1,28 @@
+import { Meta, Story, Preview, Props } from "@storybook/addon-docs/blocks";
+import SmInput from "../plugin/components/SmInput.vue";
+import SmButton from "../plugin/components/SmButton.vue";
+
+<Meta title="Components/SmInput" component={SmInput} />
+
+# SmInput
+
+An input component with built in label and custom validation. Compatible with every prop of standard HTML5 [input elements.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
+
+<Props of={SmInput} />
+
+## Input
+
+<Preview>
+  <Story name="default" height="200px">
+    {{
+      components: { SmInput, SmButton },
+      template: `
+      <form>
+        <SmInput type="email" placeholder="xyz@gmail.com" required label="Email"/>
+        <SmInput type="password" required label="Password "/>
+        <SmButton type="submit" kind="primary" class="mt2">Submit</SmButton>
+      </form>
+      `
+    }}
+  </Story>
+</Preview>

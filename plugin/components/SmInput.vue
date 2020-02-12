@@ -50,7 +50,6 @@ export default {
     form.addEventListener("submit", event => {
       this.checks(event);
     });
-    // form.setAttribute("novalidate", true);
   }
 };
 </script>

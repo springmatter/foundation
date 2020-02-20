@@ -26,7 +26,7 @@
 }
 
 body {
-  color: black;
+  color: var(--near-black);
   margin: 64px 64px 0 64px;
 }
 

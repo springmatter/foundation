@@ -1,0 +1,86 @@
+import { Meta, Story, Preview, Props } from "@storybook/addon-docs/blocks";
+import SmDropdown from "../plugin/components/SmDropdown.vue";
+
+<Meta title="Components/SmDropdown" component={SmDropdown} />
+
+# SmDropdown
+
+A simple component for selecting an option from a dropdown list.
+
+<Props of={SmDropdown} />
+
+## Simple Select
+
+Lists with more than 10 single-lined options are scrollable.
+
+<Preview>
+  <Story name="simple" height="400px">
+    {{
+      components: { SmDropdown },
+      template: `
+      <div class="flex">
+        <SmDropdown class="ma2" style="width:300px;flex-shrink:0" 
+            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava', 'Lemon', 'Grapefruit', 'Lime', 'Apricot', 'Orange', 'Plum']"/>
+        <SmDropdown class="ma2" style="width:300px;flex-shrink:0" 
+            :options="['I am a really long and overflowing option', 'NA']"/>
+       <SmDropdown class="ma2" style="width:300px;flex-shrink:0" 
+            displayKey="name"
+            :options="[{ name: 'Sally', type: 'dog', color: 'white'},
+                       { name: 'Wanda', type: 'dog', color: 'brown'},
+                       { name: 'Jack', type: 'cat', color: 'black'}, 
+                       { name: 'Pepper', type: 'dog', color: 'mixed'}, 
+                       { name: 'Lucy', type: 'cat', color: 'white'}]" />
+      </div>
+      `
+    }}
+  </Story>
+</Preview>
+
+## Searchable Select
+
+For an array of Objects, the search is performed over all keys.
+
+<Preview>
+  <Story name="searchable" height="400px">
+    {{
+      components: { SmDropdown },
+      template: `
+      <div class="flex">
+        <SmDropdown class="ma2" style="width:300px;flex-shrink:0" 
+            searchable 
+            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava', 'Lemon', 'Grapefruit', 'Lime', 'Apricot', 'Orange', 'Plum']"/>
+         <SmDropdown class="ma2" style="width:300px;flex-shrink:0" 
+            searchable
+            displayKey="name"
+            :options="[{ name: 'Sally', type: 'dog', color: 'white'},
+                       { name: 'Wanda', type: 'dog', color: 'brown'},
+                       { name: 'Jack', type: 'cat', color: 'black'}, 
+                       { name: 'Pepper', type: 'dog', color: 'mixed'}, 
+                       { name: 'Lucy', type: 'cat', color: 'white'}]" />
+      </div>
+      `
+    }}
+  </Story>
+</Preview>
+
+## List of Selects
+
+When positioned in a stacked list, components are overlay one another and close on focus out.
+
+<Preview>
+  <Story name="listed" height="400px">
+    {{
+      components: { SmDropdown },
+      template: `
+      <div>
+        <SmDropdown class="ma2" style="width:300px;" 
+            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava']"/>
+        <SmDropdown class="ma2" style="width:300px;" 
+            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava']"/>
+        <SmDropdown class="ma2" style="width:300px;" 
+            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava']"/>
+      </div>
+      `
+    }}
+  </Story>
+</Preview>

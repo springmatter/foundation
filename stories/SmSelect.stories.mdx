@@ -1,85 +1,32 @@
 import { Meta, Story, Preview, Props } from "@storybook/addon-docs/blocks";
 import SmSelect from "../plugin/components/SmSelect.vue";
+import SmButton from "../plugin/components/SmButton.vue";
 
 <Meta title="Components/SmSelect" component={SmSelect} />
 
 # SmSelect
 
-A simple component for selecting an option from a dropdown list.
+A select component with built in label and custom validation. Compatible with every prop of standard HTML5 [select elements.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select)
 
 <Props of={SmSelect} />
 
-## Simple Select
-
-Lists with more than 10 single-lined options are scrollable.
+## Select
 
 <Preview>
-  <Story name="simple" height="400px">
+  <Story name="default" height="300px">
     {{
-      components: { SmSelect },
+      components: { SmSelect, SmButton },
       template: `
-      <div class="flex">
-        <SmSelect class="ma2" style="width:300px;flex-shrink:0" 
-            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava', 'Lemon', 'Grapefruit', 'Lime', 'Apricot', 'Orange', 'Plum']"/>
-        <SmSelect class="ma2" style="width:300px;flex-shrink:0" 
-            :options="['I am a really long and overflowing option', 'NA']"/>
-       <SmSelect class="ma2" style="width:300px;flex-shrink:0" 
-            displayKey="name"
-            :options="[{ name: 'Sally', type: 'dog', color: 'white'},
-                       { name: 'Wanda', type: 'dog', color: 'brown'},
-                       { name: 'Jack', type: 'cat', color: 'black'}, 
-                       { name: 'Pepper', type: 'dog', color: 'mixed'}, 
-                       { name: 'Lucy', type: 'cat', color: 'white'}]" />
-      </div>
-      `
-    }}
-  </Story>
-</Preview>
-
-## Searchable Select
-
-For an array of Objects, the search is performed over all keys.
-
-<Preview>
-  <Story name="searchable" height="400px">
-    {{
-      components: { SmSelect },
-      template: `
-      <div class="flex">
-        <SmSelect class="ma2" style="width:300px;flex-shrink:0" 
-            searchable 
-            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava', 'Lemon', 'Grapefruit', 'Lime', 'Apricot', 'Orange', 'Plum']"/>
-         <SmSelect class="ma2" style="width:300px;flex-shrink:0" 
-            searchable
-            displayKey="name"
-            :options="[{ name: 'Sally', type: 'dog', color: 'white'},
-                       { name: 'Wanda', type: 'dog', color: 'brown'},
-                       { name: 'Jack', type: 'cat', color: 'black'}, 
-                       { name: 'Pepper', type: 'dog', color: 'mixed'}, 
-                       { name: 'Lucy', type: 'cat', color: 'white'}]" />
-      </div>
-      `
-    }}
-  </Story>
-</Preview>
-
-## List of Selects
-
-When positioned in a stacked list, components are overlay one another and close on focus out.
-
-<Preview>
-  <Story name="listed" height="400px">
-    {{
-      components: { SmSelect },
-      template: `
-      <div>
-        <SmSelect class="ma2" style="width:300px;" 
-            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava']"/>
-        <SmSelect class="ma2" style="width:300px;" 
-            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava']"/>
-        <SmSelect class="ma2" style="width:300px;" 
-            :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava']"/>
-      </div>
+      <form>
+        <SmSelect label="Options" required multiple style="{ height: '300px'}">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+        </SmSelect>
+        <SmButton type="submit" kind="primary" class="mt2">Submit</SmButton>
+      </form>
       `
     }}
   </Story>

@@ -9,7 +9,6 @@ import VueRouter from "vue-router";
 import SmApp from "./components/SmApp.vue";
 import SmButton from "./components/SmButton.vue";
 import SmCard from "./components/SmCard.vue";
-import SmDropdown from "./components/SmDropdown.vue";
 import SmIcon from "./components/SmIcon.vue";
 import SmImage from "./components/SmImage.vue";
 import SmSpinner from "./components/SmSpinner.vue";
@@ -24,7 +23,6 @@ export default {
     Vue.component("SmApp", SmApp);
     Vue.component("SmButton", SmButton);
     Vue.component("SmCard", SmCard);
-    Vue.component("SmDropdown", SmDropdown);
     Vue.component("SmIcon", SmIcon);
     Vue.component("SmImage", SmImage);
     Vue.component("SmSpinner", SmSpinner);

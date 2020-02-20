@@ -47,9 +47,11 @@ export default {
   },
   mounted() {
     let form = this.$refs.input.closest("form");
-    form.addEventListener("submit", event => {
-      this.checks(event);
-    });
+    if (form) {
+      form.addEventListener("submit", event => {
+        this.checks(event);
+      });
+    }
   }
 };
 </script>

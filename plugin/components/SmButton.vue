@@ -51,7 +51,8 @@ export default {
   position: relative;
   font-weight: 300;
   transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
-    background 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    background 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
+    color 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .SmButton:hover {
@@ -61,6 +62,7 @@ export default {
 .SmButton:focus {
   outline: #0038ff solid 2px;
   outline-offset: 1px;
+  z-index: 10000;
 }
 
 .SmButton.primary > svg,
@@ -85,15 +87,15 @@ export default {
 }
 
 .SmButton.primary:hover {
-  background: #001b44;
+  background: var(--secondary);
   transform: translateY(-1px);
 }
 
 .SmButton.secondary,
 .SmButton.secondary:disabled:hover {
   background: white;
-  color: black;
-  border: 1px solid black;
+  color: var(--primary);
+  border: 1px solid var(--primary);
 }
 
 .SmButton.icon,
@@ -104,13 +106,14 @@ export default {
   padding: 0;
 }
 
-.SmButton.secondary:hover,
 .SmButton.icon:hover {
   color: var(--primary);
+  transform: translateY(-1px);
 }
 
 .SmButton.secondary:hover {
-  border: 1px solid var(--primary);
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
   transform: translateY(-1px);
 }
 

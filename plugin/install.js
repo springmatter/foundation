@@ -17,6 +17,7 @@ import SmMore from "./components/SmMore.vue";
 import SmScrollBox from "./components/SmScrollBox.vue";
 import SmSearch from "./components/SmSearch.vue";
 import SmTag from "./components/SmTag.vue";
+import SmSelect from "./components/SmSelect.vue";
 
 export default {
   install(Vue) {
@@ -31,6 +32,7 @@ export default {
     Vue.component("SmScrollBox", SmScrollBox);
     Vue.component("SmSearch", SmSearch);
     Vue.component("SmTag", SmTag);
+    Vue.component("SmSelect", SmSelect);
 
     Vue.use(VueRouter);
   }

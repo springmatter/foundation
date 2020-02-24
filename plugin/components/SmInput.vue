@@ -10,6 +10,8 @@
       :value="value"
       @input="input($event)"
       @blur="checks($event)"
+      @keyup="$emit('keyup')"
+      @search="$emit('search')"
       ref="input"
     />
   </label>
@@ -71,8 +73,8 @@ export default {
 .SmInput {
   background: white;
   border: 1px solid black;
-  padding-left: 16px;
-  height: 40px;
+  padding-left: 8px;
+  height: 32px;
   display: block;
   width: 100%;
 }
@@ -80,13 +82,13 @@ export default {
 .SmInput:focus,
 .SmInput[type="search"]:focus {
   outline: none;
-  box-shadow: 0 0 0 1px var(--primary);
+  /* box-shadow: 0 0 0 1px var(--primary); */
   border: 1px solid var(--primary);
 }
 
 .SmInput:not(:focus):invalid {
-  box-shadow: 0 0 0 1px #e7040f;
-  border: 1px solid #e7040f;
+  /* box-shadow: 0 0 0 1px #e7040f; */
+  border: 1px solid var(--error);
   background-repeat: no-repeat;
   background-position: center right 16px;
 }
@@ -106,20 +108,23 @@ export default {
   background-position: center right 8px;
 }
 
-.SmInput[type="search"]::-webkit-search-cancel-button {
-  margin-right: 8px;
-}
-
 .SmInput[type="color"]:hover {
   cursor: pointer;
 }
 
 .SmInputRequired {
-  color: #e7040f;
+  color: var(--error);
 }
 
 .SmInputError {
-  color: #e7040f;
+  color: var(--error);
   text-align: right;
+}
+
+.SmInput[type="search"]::-webkit-search-decoration,
+.SmInput[type="search"]::-webkit-search-cancel-button,
+.SmInput[type="search"]::-webkit-search-results-button,
+.SmInput[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
 }
 </style>

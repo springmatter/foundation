@@ -108,6 +108,10 @@ hr {
   margin: 0;
 }
 
+form {
+  padding: 8px;
+}
+
 fieldset {
   display: flex;
 }

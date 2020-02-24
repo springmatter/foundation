@@ -12,6 +12,7 @@
       @blur="checks($event)"
       ref="select"
     >
+      <option value="" selected disabled>{{ placeholder }}</option>
       <slot></slot>
     </select>
   </label>
@@ -21,6 +22,10 @@
 export default {
   inheritAttrs: false,
   props: {
+    placeholder: {
+      type: String,
+      required: true
+    },
     label: {
       type: String
     },

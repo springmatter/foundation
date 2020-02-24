@@ -30,7 +30,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .SmImageLoading {
   animation: glow 1s ease-in-out infinite alternate;
   outline-width: 1000px;

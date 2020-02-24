@@ -1,7 +1,16 @@
 {
-  "name": "foundation",
+  "name": "@springmatter/foundation",
+  "description": "The foundation of all Springmatter apps",
+  "license": "MIT",
+  "author": "Marcus Kreitzer",
+  "contributors": [
+    "Hannah VanWingen"
+  ],
+  "files": [
+    "plugin/"
+  ],
+  "main": "plugin/install.js",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "storybook": "start-storybook -p 6006 --ci",
     "build-storybook": "build-storybook"

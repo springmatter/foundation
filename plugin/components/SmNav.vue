@@ -115,6 +115,6 @@ export default {
 }
 
 .SmNavLinkCurrent {
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid black;
 }
 </style>

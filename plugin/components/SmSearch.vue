@@ -22,7 +22,7 @@ export default {
     SmInput
   },
   props: {
-    /** An list of Strings or Objects to search. */
+    /** Defined only to enable `v-model`. Use `v-model` instead. */
     value: {
       type: Array
     }

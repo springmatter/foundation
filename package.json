@@ -9,8 +9,9 @@
   "files": [
     "plugin/"
   ],
+  "private": false,
   "main": "plugin/install.js",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "scripts": {
     "storybook": "start-storybook -p 6006 --ci",
     "build-storybook": "build-storybook"

@@ -4,7 +4,6 @@
     class="SmImage"
     @load="srcLoading = false"
     :class="{ SmImageLoading: srcLoading || loading }"
-    ref="img"
     @click="$emit('click', $event)"
   />
 </template>
@@ -33,9 +32,9 @@ export default {
 
 <style>
 .SmImageLoading {
-  animation: glow 0.75s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
   outline-width: 1000px;
-  outline-color: var(--gray2);
+  outline-color: var(--gray);
   outline-style: solid;
   outline-offset: -1000px;
   padding: 0px;
@@ -43,11 +42,11 @@ export default {
 
 @keyframes glow {
   from {
-    opacity: 0.2;
+    opacity: 0.05;
   }
 
   to {
-    opacity: 1;
+    opacity: 0.3;
   }
 }
 </style>

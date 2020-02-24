@@ -1,6 +1,3 @@
-import "sanitize.css";
-import "sanitize.css/forms.css";
-import "sanitize.css/typography.css";
 import "../plugin/base.css";
 import "tachyons";
 import theme from "./theme.js";

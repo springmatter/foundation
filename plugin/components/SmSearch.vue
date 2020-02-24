@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input
+    <SmInput
       type="search"
       autofocus
       class="SmSearch"
@@ -13,59 +13,66 @@
 </template>
 
 <script>
-import SmIcon from "./SmIcon.vue";
+import SmInput from "./SmInput.vue";
 import * as Fuse from "fuse.js";
 
 export default {
   name: "SmSearch",
+  components: {
+    SmInput
+  },
   props: {
     /** An list of Strings or Objects to search. */
-    options: {
-      type: Array,
-      required: true
+    value: {
+      type: Array
     }
   },
   data: function() {
     return {
       results: [],
+      original: null,
       filter: ""
     };
   },
   computed: {
-    settings: function() {
-      // Check if 'options' is a list of strings or dictionaries to set correct keys.
-      let keys =
-        typeof this.options[0] == "string" ? [] : Object.keys(this.options[0]);
-      return {
-        shouldSort: true,
-        threshold: 0.3,
-        location: 0,
-        distance: 100,
-        maxPatternLength: 32,
-        minMatchCharLength: 1,
-        keys: keys
-      };
-    },
     fuse: function() {
-      return new Fuse(this.options, this.settings);
+      if (this.original) {
+        return new Fuse(this.original, {
+          shouldSort: true,
+          threshold: 0.3,
+          location: 0,
+          distance: 100,
+          maxPatternLength: 32,
+          minMatchCharLength: 1,
+          keys:
+            typeof this.original[0] === "string"
+              ? []
+              : Object.keys(this.original[0])
+        });
+      } else {
+        return null;
+      }
     }
   },
   methods: {
     filterResults() {
       // If filter is empty, return all results
-      if (this.filter == "") {
-        this.results = this.options;
-      } else {
+      if (this.fuse && this.filter !== "") {
         this.results = this.fuse.search(this.filter);
         // If list is a string, access indexed values.
-        if (typeof this.options[0] == "string") {
+        if (typeof this.original[0] === "string") {
           for (var i = 0; i < this.results.length; i++) {
-            this.results[i] = this.options[this.results[i]];
+            this.results[i] = this.original[this.results[i]];
           }
         }
+      } else {
+        this.results = this.original;
       }
       this.$emit("input", this.results);
     }
+  },
+  mounted: function() {
+    this.original = this.value;
   }
 };
 </script>

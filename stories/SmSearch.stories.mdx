@@ -18,14 +18,21 @@ A standard searchbar with Fuse.js functionality.
       components: { SmSearch },
       data() {
         return {
-          results: []
+          results: [
+            "Apple",
+            "Pear",
+            "Banana",
+            "Mango",
+            "Guava",
+            "Lemon",
+            "Grapefruit"
+          ]
         };
       },
       template: `
           <div>
               <SmSearch style="width:300px" class="ma2"
-                v-model="results"
-                 :options="['Apple', 'Pear', 'Banana', 'Mango', 'Guava', 'Lemon', 'Grapefruit']"/>
+                v-model="results" />
               <div class="ma2 mt3">
               Results:
                 <div v-for="result in results" class="ma2">
@@ -48,18 +55,19 @@ Search is performed over values for each object.
       components: { SmSearch },
       data() {
         return {
-          results: []
+          results: [
+            { name: "Sally", type: "dog", color: "white" },
+            { name: "Wanda", type: "dog", color: "brown" },
+            { name: "Jack", type: "cat", color: "black" },
+            { name: "Pepper", type: "dog", color: "mixed" },
+            { name: "Lucy", type: "cat", color: "white" }
+          ]
         };
       },
       template: `
           <div>
               <SmSearch style="width:300px" class="ma2"
-                v-model="results"
-                :options="[{ name: 'Sally', type: 'dog', color: 'white'},
-                           { name: 'Wanda', type: 'dog', color: 'brown'},
-                           { name: 'Jack', type: 'cat', color: 'black'}, 
-                           { name: 'Pepper', type: 'dog', color: 'mixed'}, 
-                           { name: 'Lucy', type: 'cat', color: 'white'}]"/>
+                v-model="results"/>
               <div class="ma2 mt3">
               Results:
                 <div v-for="result in results" class="ma2">

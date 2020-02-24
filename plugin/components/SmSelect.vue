@@ -94,8 +94,6 @@ export default {
 .SmSelect:not(:focus):invalid {
   /* box-shadow: 0 0 0 1px var(--error); */
   border: 1px solid var(--error);
-  background-repeat: no-repeat;
-  background-position: center right 16px;
 }
 
 .SmSelect:disabled {

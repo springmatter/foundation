@@ -72,8 +72,8 @@ export default {
 }
 .SmSelect {
   border: 1px solid black;
-  padding: 0 16px;
-  height: 40px;
+  padding: 0 8px;
+  height: 32px;
   display: block;
   width: 100%;
   appearance: none;
@@ -82,13 +82,13 @@ export default {
 
 .SmSelect:focus {
   outline: none;
-  box-shadow: 0 0 0 1px var(--primary);
+  /* box-shadow: 0 0 0 1px var(--primary); */
   border: 1px solid var(--primary);
 }
 
 .SmSelect:not(:focus):invalid {
-  box-shadow: 0 0 0 1px #e7040f;
-  border: 1px solid #e7040f;
+  /* box-shadow: 0 0 0 1px var(--error); */
+  border: 1px solid var(--error);
   background-repeat: no-repeat;
   background-position: center right 16px;
 }
@@ -109,6 +109,6 @@ export default {
 }
 
 .SmSelectRequired {
-  color: #e7040f;
+  color: var(--error);
 }
 </style>

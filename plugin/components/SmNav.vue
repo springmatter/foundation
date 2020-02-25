@@ -92,6 +92,7 @@ export default {
   display: none;
   bottom: -30px;
   font-weight: 400;
+  z-index: 10000;
 }
 
 .SmNavLinkTooltip::before {

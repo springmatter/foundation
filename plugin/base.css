@@ -68,6 +68,7 @@ h4 {
 
 p {
   line-height: 1.5;
+  margin: 0;
 }
 
 small {
@@ -108,10 +109,6 @@ hr {
   margin: 0;
 }
 
-form {
-  padding: 8px;
-}
-
 fieldset {
   display: flex;
 }
@@ -123,7 +120,6 @@ fieldset {
  * 2. Add typography inheritance in all browsers (opinionated).
  */
 
-button,
 input,
 select,
 textarea {

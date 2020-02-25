@@ -12,7 +12,6 @@
 import feather from "feather-icons";
 
 export default {
-  name: "SmIcon",
   props: {
     /** The name of the feather icon you'd like to use */
     name: {

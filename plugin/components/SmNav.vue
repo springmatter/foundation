@@ -24,7 +24,6 @@
 import SmIcon from "./SmIcon.vue";
 
 export default {
-  name: "SmApp",
   components: { SmIcon },
   props: {
     /** The title of your app. Appears in the top left of the nav bar. */

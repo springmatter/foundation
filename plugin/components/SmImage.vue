@@ -10,7 +10,6 @@
 
 <script>
 export default {
-  name: "SmImage",
   data: function() {
     return {
       srcLoading: true,

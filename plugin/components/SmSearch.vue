@@ -17,7 +17,6 @@ import SmInput from "./SmInput.vue";
 import * as Fuse from "fuse.js";
 
 export default {
-  name: "SmSearch",
   components: {
     SmInput
   },

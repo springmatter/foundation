@@ -4,7 +4,6 @@
 
 <script>
 export default {
-  name: "SmLoading",
   props: {
     /** Makes the spinner small for use inside other components */
     small: {

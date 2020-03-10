@@ -112,6 +112,12 @@ export default {
   cursor: pointer;
 }
 
+.SmInput[type="file"] {
+  border: none !important;
+  width: auto;
+  padding: 0;
+}
+
 .SmInputRequired {
   color: var(--error);
 }

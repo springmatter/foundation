@@ -26,3 +26,19 @@ An input component with built in label and custom validation. Compatible with ev
     }}
   </Story>
 </Preview>
+
+## File Input
+
+<Preview>
+  <Story name="file" height="200px">
+    {{
+      components: { SmInput, SmButton },
+      template: `
+      <form>
+        <SmInput type="file" required label="File Upload"/>
+        <SmButton type="submit" kind="primary" class="mt2">Submit</SmButton>
+      </form>
+      `
+    }}
+  </Story>
+</Preview>

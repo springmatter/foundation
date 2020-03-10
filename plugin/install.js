@@ -1,8 +1,6 @@
 import "./base.css";
 import "tachyons";
 
-import VueRouter from "vue-router";
-
 import SmButton from "./components/SmButton.vue";
 import SmIcon from "./components/SmIcon.vue";
 import SmImage from "./components/SmImage.vue";
@@ -24,7 +22,5 @@ export default {
     Vue.component("SmSpinner", SmSpinner);
     Vue.component("SmSearch", SmSearch);
     Vue.component("SmSelect", SmSelect);
-
-    Vue.use(VueRouter);
   }
 };

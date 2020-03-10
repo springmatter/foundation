@@ -1,0 +1,27 @@
+import { Meta, Story, Preview, Props } from "@storybook/addon-docs/blocks";
+import SmTextArea from "../plugin/components/SmTextArea.vue";
+import SmButton from "../plugin/components/SmButton.vue";
+
+<Meta title="Components/SmTextArea" component={SmTextArea} />
+
+# SmTextArea
+
+An text area component with built in label and custom validation. Compatible with every prop of standard HTML5 [text area elements.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea)
+
+<Props of={SmTextArea} />
+
+## Text Area
+
+<Preview>
+  <Story name="default" height="200px">
+    {{
+      components: { SmTextArea, SmButton },
+      template: `
+      <form>
+        <SmTextArea placeholder="A text area" required label="Text Area"/>
+        <SmButton type="submit" kind="primary" class="mt2">Submit</SmButton>
+      </form>
+      `
+    }}
+  </Story>
+</Preview>

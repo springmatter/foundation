@@ -1,7 +1,7 @@
 <template>
   <button class="SmButton" :class="kind" @click="$emit('click', $event)">
     <slot></slot>
-    <SmIcon v-if="icon" :name="icon" :size="kind === 'icon' ? 's' : 'm'" />
+    <SmIcon v-if="icon" :name="icon" />
     <small v-if="tooltip" class="SmButtonTooltip">{{ tooltip }}</small>
   </button>
 </template>

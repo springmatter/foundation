@@ -8,8 +8,8 @@
       class="SmSelect"
       v-bind="$attrs"
       :value="value"
-      @input="this.$emit('input', $event)"
-      @change="this.$emit('change', $event)"
+      @input="$emit('input', $event)"
+      @change="$emit('change', $event)"
       @blur="checks($event)"
       ref="select"
     >

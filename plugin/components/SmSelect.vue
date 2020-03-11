@@ -8,7 +8,8 @@
       class="SmSelect"
       v-bind="$attrs"
       :value="value"
-      @input="input($event)"
+      @input="this.$emit('input', $event)"
+      @change="this.$emit('change', $event)"
       @blur="checks($event)"
       ref="select"
     >
@@ -43,13 +44,11 @@ export default {
   },
   methods: {
     checks(event) {
+      this.$emit("blur", event);
       event.preventDefault();
       if (this.required) {
         this.$refs.select.setAttribute("required", true);
       }
-    },
-    input(event) {
-      this.$emit("input", event.target.value);
     }
   },
   mounted() {

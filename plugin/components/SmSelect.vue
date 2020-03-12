@@ -4,23 +4,31 @@
       {{ label }}
       <span class="SmSelectRequired" v-if="required">*</span>
     </small>
+    <SmSpinner v-if="loading" class="SmSelectSpinner" small />
     <select
       class="SmSelect"
+      :class="{ SmSelectLoading: loading }"
       v-bind="$attrs"
       :value="value"
-      @input="$emit('input', $event)"
+      @input="$emit('input', $event.target.value)"
       @change="$emit('change', $event)"
       @blur="checks($event)"
       ref="select"
+      :disabled="disabled || loading"
     >
-      <option value="" selected disabled>{{ placeholder }}</option>
+      <option v-if="!loading" value="" selected disabled>
+        {{ placeholder }}
+      </option>
       <slot></slot>
     </select>
   </label>
 </template>
 
 <script>
+import SmSpinner from "./SmSpinner.vue";
+
 export default {
+  components: { SmSpinner },
   inheritAttrs: false,
   props: {
     placeholder: {
@@ -31,6 +39,12 @@ export default {
       type: String
     },
     required: {
+      type: Boolean
+    },
+    loading: {
+      type: Boolean
+    },
+    disabled: {
       type: Boolean
     },
     /** This is declared so v-model can be used on the input */
@@ -67,6 +81,7 @@ export default {
   display: block;
   width: 100%;
   margin-bottom: 16px;
+  position: relative;
 }
 
 .SmSelectLabel {
@@ -112,5 +127,18 @@ export default {
 
 .SmSelectRequired {
   color: var(--error);
+}
+
+.SmSelectSpinner {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin-left: 16px;
+  margin-bottom: 16px;
+}
+
+.SmSelectLoading:disabled {
+  cursor: wait;
+  opacity: 1;
 }
 </style>

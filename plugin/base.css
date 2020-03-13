@@ -34,8 +34,8 @@ body {
 }
 
 :focus {
-  outline: var(--primary) solid 2px;
-  outline-offset: 1px;
+  outline: var(--primary) solid 1px;
+  outline-offset: -1px;
 }
 
 h1,

@@ -1,5 +1,5 @@
 <template>
-  <div class="SmModal" @click="$emit('close')">
+  <div class="SmModal">
     <div class="SmModalWindow">
       <slot></slot>
       <SmButton

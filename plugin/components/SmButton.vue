@@ -62,7 +62,6 @@ export default {
 .SmButton:focus {
   outline: #0038ff solid 1px;
   outline-offset: 1px;
-  z-index: 10000;
 }
 
 .SmButton.primary > svg,

@@ -148,14 +148,14 @@ export default {
   top: 50%;
   bottom: 0;
   transform: translateY(-50%);
-  right: -40px;
+  left: 100%;
 }
 
 .SmButtonTooltip.left {
   top: 50%;
   bottom: 0;
   transform: translateY(-50%);
-  left: calc(-100% - 24px);
+  right: 100%;
 }
 
 .SmButtonTooltip.top {

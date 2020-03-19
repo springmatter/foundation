@@ -39,7 +39,7 @@ export default {
   methods: {
     checks(event) {
       event.preventDefault();
-      if (this.required) {
+      if (this.required && this.$refs.input) {
         this.$refs.input.setAttribute("required", true);
       }
     },

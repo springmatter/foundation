@@ -84,3 +84,21 @@ If you just need to make something clickable and focusable, a standard `<button>
     }}
   </Story>
 </Preview>
+
+## Tooltip directions
+
+<Preview>
+  <Story name="ttDirections" height="120px">
+    {{
+      components: { SmButton },
+      template: `
+      <div class="flex pa4">
+        <SmButton icon="plus" kind="icon" tooltip="Plus" ttDirection="right"></SmButton>
+        <SmButton icon="feather" kind="icon" tooltip="Feather" ttDirection="top"></SmButton>
+        <SmButton icon="sun" kind="icon" tooltip="Sun" ttDirection="bottom"></SmButton>
+        <SmButton icon="archive" kind="icon" tooltip="Archive" ttDirection="left"></SmButton>
+      </div>
+      `
+    }}
+  </Story>
+</Preview>

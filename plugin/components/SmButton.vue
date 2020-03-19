@@ -2,7 +2,9 @@
   <button class="SmButton" :class="kind" @click="$emit('click', $event)">
     <slot></slot>
     <SmIcon v-if="icon" :name="icon" />
-    <small v-if="tooltip" class="SmButtonTooltip">{{ tooltip }}</small>
+    <small v-if="tooltip" class="SmButtonTooltip" :class="ttDirection">
+      {{ tooltip }}
+    </small>
   </button>
 </template>
 
@@ -31,6 +33,15 @@ export default {
     tooltip: {
       type: String,
       required: false
+    },
+    /* Changes the direction of the tooltip, in case it is too close to the edge of the screen (left|right|top|bottom) */
+    ttDirection: {
+      type: String,
+      required: false,
+      default: "bottom",
+      validator: function(value) {
+        return ["left", "right", "top", "bottom"].indexOf(value) !== -1;
+      }
     }
   }
 };
@@ -133,6 +144,25 @@ export default {
   bottom: -32px;
 }
 
+.SmButtonTooltip.right {
+  top: 50%;
+  bottom: 0;
+  transform: translateY(-50%);
+  right: -40px;
+}
+
+.SmButtonTooltip.left {
+  top: 50%;
+  bottom: 0;
+  transform: translateY(-50%);
+  left: calc(-100% - 24px);
+}
+
+.SmButtonTooltip.top {
+  top: -32px;
+  bottom: initial;
+}
+
 .SmButtonTooltip::before {
   content: "";
   position: absolute;
@@ -146,6 +176,30 @@ export default {
   border-right: 4px solid transparent;
   border-bottom: 4px solid black;
   border-radius: 0;
+}
+
+.SmButtonTooltip.top::before {
+  bottom: -4px;
+  left: initial;
+  right: initial;
+  top: initial;
+  transform: rotate(180deg);
+}
+
+.SmButtonTooltip.left::before {
+  right: -6px;
+  left: initial;
+  top: initial;
+  bottom: initial;
+  transform: rotate(90deg);
+}
+
+.SmButtonTooltip.right::before {
+  left: -6px;
+  right: initial;
+  top: initial;
+  bottom: initial;
+  transform: rotate(-90deg);
 }
 
 .SmButton:hover .SmButtonTooltip {

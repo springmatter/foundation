@@ -103,7 +103,7 @@ export default {
 
 .SmButton.icon,
 .SmButton.icon:disabled:hover {
-  background: white;
+  background: transparent;
   color: black;
   height: 32px;
   padding: 0;

@@ -64,6 +64,10 @@ export default {
   outline-offset: 1px;
 }
 
+.SmButton.icon:focus {
+  outline-offset: -1px;
+}
+
 .SmButton.primary > svg,
 .SmButton.secondary > svg,
 .SmButton.ghost > svg {

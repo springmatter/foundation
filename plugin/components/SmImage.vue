@@ -3,7 +3,7 @@
     :src="src"
     class="SmImage"
     @load="srcLoading = false"
-    :class="{ SmImageLoading: srcLoading || loading }"
+    :class="{ SmImageLoading: isLoading }"
     @click="$emit('click', $event)"
   />
 </template>
@@ -24,6 +24,16 @@ export default {
     loading: {
       required: false,
       type: Boolean
+    }
+  },
+  watch: {
+    src() {
+      this.srcLoading = true;
+    }
+  },
+  computed: {
+    isLoading() {
+      return this.loading || this.srcLoading;
     }
   }
 };

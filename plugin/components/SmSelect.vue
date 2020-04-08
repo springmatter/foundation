@@ -80,7 +80,6 @@ export default {
 .SmSelectRoot {
   display: block;
   width: 100%;
-  margin-bottom: 16px;
   position: relative;
 }
 
@@ -91,7 +90,7 @@ export default {
 }
 .SmSelect {
   border: 1px solid black;
-  padding: 0 8px;
+  padding: 0 16px 0 8px;
   height: 32px;
   display: block;
   width: 100%;
@@ -101,7 +100,6 @@ export default {
 
 .SmSelect:focus {
   outline: none;
-  /* box-shadow: 0 0 0 1px var(--primary); */
   border: 1px solid var(--primary);
 }
 

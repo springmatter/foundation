@@ -1,15 +1,14 @@
 <template>
-  <div>
-    <SmInput
-      type="search"
-      autofocus
-      class="SmSearch"
-      v-model="filter"
-      placeholder="Search"
-      @keyup="filterResults"
-      @search="filterResults"
-    />
-  </div>
+  <SmInput
+    type="search"
+    autofocus
+    class="SmSearch"
+    v-model="filter"
+    placeholder="Search"
+    @keyup="filterResults"
+    @search="filterResults"
+    :label="label"
+  />
 </template>
 
 <script>
@@ -24,6 +23,9 @@ export default {
     /** Defined only to enable `v-model`. Use `v-model` instead. */
     value: {
       type: Array
+    },
+    label: {
+      type: String
     }
   },
   data: function() {

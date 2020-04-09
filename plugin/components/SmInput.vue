@@ -62,7 +62,6 @@ export default {
 .SmInputRoot {
   display: block;
   width: 100%;
-  margin-bottom: 16px;
 }
 
 .SmInputLabel {

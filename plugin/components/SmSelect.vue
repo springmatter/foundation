@@ -1,6 +1,6 @@
 <template>
   <label class="SmSelectRoot">
-    <small class="SmSelectLabel">
+    <small class="SmSelectLabel" v-if="label">
       {{ label }}
       <span class="SmSelectRequired" v-if="required">*</span>
     </small>

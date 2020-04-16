@@ -87,8 +87,8 @@ a:hover {
 button {
   border: none;
   cursor: pointer;
-  min-height: 40px;
-  min-width: 40px;
+  min-height: 32px;
+  min-width: 32px;
   padding: 8px;
   color: var(--primary);
   display: flex;

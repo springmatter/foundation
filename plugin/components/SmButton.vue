@@ -53,8 +53,8 @@ export default {
   text-align: center;
   outline: none;
   cursor: pointer;
-  min-width: 40px;
-  height: 40px;
+  min-width: 32px;
+  height: 32px;
   padding: 0 16px;
   display: flex;
   align-items: center;

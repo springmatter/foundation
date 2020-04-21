@@ -29,7 +29,7 @@ export default {
     /** The title of your app. Appears in the top left of the nav bar. */
     title: {
       type: String,
-      required: true
+      required: true,
     },
     /** All of the links in your nav bar specified as an array of objects with keys for `icon`, `route`, `tooltip` */
     links: {
@@ -43,9 +43,9 @@ export default {
         }
 
         return true;
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 
@@ -89,10 +89,12 @@ export default {
   align-items: center;
   justify-content: center;
   position: absolute;
-  display: none;
+  display: flex;
   bottom: -30px;
   font-weight: 400;
   z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .SmNavLinkTooltip::before {
@@ -111,7 +113,7 @@ export default {
 }
 
 .SmNavLink:hover .SmNavLinkTooltip {
-  display: flex;
+  opacity: 1;
 }
 
 .SmNavLinkCurrent {

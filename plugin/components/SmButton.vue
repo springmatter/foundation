@@ -12,7 +12,7 @@
 import SmIcon from "./SmIcon.vue";
 export default {
   components: {
-    SmIcon
+    SmIcon,
   },
   props: {
     /** Specifies the visual style of the button (primary|secondary|icon) */
@@ -22,17 +22,17 @@ export default {
       default: "primary",
       validator: function(value) {
         return ["primary", "secondary", "icon", "empty"].indexOf(value) !== -1;
-      }
+      },
     },
     /** Adds an icon to the button. Must be the name of a feather icon. */
     icon: {
       type: String,
-      required: false
+      required: false,
     },
     /** Adds a tooltip with the specified text. Most icon buttons should have tooltips */
     tooltip: {
       type: String,
-      required: false
+      required: false,
     },
     /* Changes the direction of the tooltip, in case it is too close to the edge of the screen (left|right|top|bottom) */
     ttDirection: {
@@ -41,9 +41,9 @@ export default {
       default: "bottom",
       validator: function(value) {
         return ["left", "right", "top", "bottom"].indexOf(value) !== -1;
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 
@@ -148,27 +148,39 @@ export default {
   align-items: center;
   justify-content: center;
   position: absolute;
-  display: none;
-  bottom: -32px;
+  display: flex;
+  opacity: 0;
+  top: 100%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translateX(-50%);
+  transition: opacity 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  pointer-events: none;
 }
 
 .SmButtonTooltip.right {
   top: 50%;
-  bottom: 0;
+  bottom: auto;
+  right: auto;
   transform: translateY(-50%);
   left: 100%;
 }
 
 .SmButtonTooltip.left {
   top: 50%;
-  bottom: 0;
+  bottom: auto;
+  left: auto;
   transform: translateY(-50%);
   right: 100%;
 }
 
 .SmButtonTooltip.top {
-  top: -32px;
-  bottom: initial;
+  bottom: 100%;
+  top: auto;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
 }
 
 .SmButtonTooltip::before {
@@ -211,6 +223,6 @@ export default {
 }
 
 .SmButton:hover .SmButtonTooltip {
-  display: flex;
+  opacity: 1;
 }
 </style>

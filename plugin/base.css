@@ -114,6 +114,10 @@ fieldset {
   display: flex;
 }
 
+form .SmInputRoot {
+  margin-bottom: 1rem;
+}
+
 /******** SANITIZE FORMS *********/
 
 /**

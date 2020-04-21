@@ -21,7 +21,7 @@ export default {
       required: false,
       default: "primary",
       validator: function(value) {
-        return ["primary", "secondary", "icon"].indexOf(value) !== -1;
+        return ["primary", "secondary", "icon", "empty"].indexOf(value) !== -1;
       }
     },
     /** Adds an icon to the button. Must be the name of a feather icon. */
@@ -64,6 +64,14 @@ export default {
   transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
     background 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
     color 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.SmButton.empty {
+  text-align: initial;
+  min-width: initial;
+  height: initial;
+  padding: initial;
+  display: block;
 }
 
 .SmButton:hover {

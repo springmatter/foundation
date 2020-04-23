@@ -29,7 +29,7 @@ export default {
     /** The title of your app. Appears in the top left of the nav bar. */
     title: {
       type: String,
-      required: true,
+      required: true
     },
     /** All of the links in your nav bar specified as an array of objects with keys for `icon`, `route`, `tooltip` */
     links: {
@@ -43,9 +43,9 @@ export default {
         }
 
         return true;
-      },
-    },
-  },
+      }
+    }
+  }
 };
 </script>
 
@@ -88,6 +88,7 @@ export default {
   color: white;
   align-items: center;
   justify-content: center;
+  pointer-events: none;
   position: absolute;
   display: flex;
   bottom: -30px;

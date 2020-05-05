@@ -1,10 +1,6 @@
 <template>
   <nav id="SmNav">
-    <router-link
-      to="/"
-      class="SmNavLink"
-      :class="{ SmNavLinkCurrent: $route.path === '/' }"
-    >
+    <router-link to="/" class="SmNavLink">
       {{ title }}
     </router-link>
     <router-link
@@ -12,7 +8,6 @@
       :key="index"
       :to="link.route"
       class="SmNavLink"
-      :class="{ SmNavLinkCurrent: $route.path.includes(link.route) }"
     >
       <SmIcon :name="link.icon" size="s" />
       <small class="SmNavLinkTooltip">{{ link.tooltip }}</small>
@@ -115,9 +110,5 @@ export default {
 
 .SmNavLink:hover .SmNavLinkTooltip {
   opacity: 1;
-}
-
-.SmNavLinkCurrent {
-  border-bottom: 1px solid black;
 }
 </style>

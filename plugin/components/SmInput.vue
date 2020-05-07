@@ -10,8 +10,9 @@
       :value="value"
       @input="input($event)"
       @blur="checks($event)"
-      @keyup="$emit('keyup')"
-      @search="$emit('search')"
+      @keyup="$emit('keyup', $event)"
+      @search="$emit('search', $event)"
+      @change="$emit('change', $event)"
       ref="input"
     />
   </label>

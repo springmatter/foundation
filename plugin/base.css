@@ -88,6 +88,7 @@ a:hover {
 
 button {
   border: none;
+  background: none;
   cursor: pointer;
   min-height: 32px;
   min-width: 32px;

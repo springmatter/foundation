@@ -17,22 +17,22 @@ import * as Fuse from "fuse.js";
 
 export default {
   components: {
-    SmInput
+    SmInput,
   },
   props: {
     /** Defined only to enable `v-model`. Use `v-model` instead. */
     value: {
-      type: Array
+      type: Array,
     },
     label: {
-      type: String
-    }
+      type: String,
+    },
   },
   data: function() {
     return {
       results: [],
       original: null,
-      filter: ""
+      filter: "",
     };
   },
   computed: {
@@ -48,12 +48,12 @@ export default {
           keys:
             typeof this.original[0] === "string"
               ? []
-              : Object.keys(this.original[0])
+              : Object.keys(this.original[0]),
         });
       } else {
         return null;
       }
-    }
+    },
   },
   methods: {
     filterResults() {
@@ -70,11 +70,11 @@ export default {
         this.results = this.original;
       }
       this.$emit("input", this.results);
-    }
+    },
   },
   mounted: function() {
     this.original = this.value;
-  }
+  },
 };
 </script>
 

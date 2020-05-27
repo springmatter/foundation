@@ -1,5 +1,5 @@
 <template>
-  <label class="SmSelectRoot">
+  <label class="SmSelectRoot" :class="{ SmSelectDisabled: disabled }">
     <small class="SmSelectLabel" v-if="label">
       {{ label }}
       <span class="SmSelectRequired" v-if="required">*</span>
@@ -33,24 +33,24 @@ export default {
   props: {
     placeholder: {
       type: String,
-      required: true
+      required: true,
     },
     label: {
-      type: String
+      type: String,
     },
     required: {
-      type: Boolean
+      type: Boolean,
     },
     loading: {
-      type: Boolean
+      type: Boolean,
     },
     disabled: {
-      type: Boolean
+      type: Boolean,
     },
     /** This is declared so v-model can be used on the input */
     value: {
-      type: String
-    }
+      type: String,
+    },
     // /** An interface for the contstraint validation API, structured as such: `{ ValidityState: errorMsg }`  */
     // validation: {
     //   type: Object
@@ -63,16 +63,16 @@ export default {
       if (this.required) {
         this.$refs.select.setAttribute("required", true);
       }
-    }
+    },
   },
   mounted() {
     let form = this.$refs.select.closest("form");
     if (form) {
-      form.addEventListener("submit", event => {
+      form.addEventListener("submit", (event) => {
         this.checks(event);
       });
     }
-  }
+  },
 };
 </script>
 
@@ -108,7 +108,7 @@ export default {
   border: 1px solid var(--error);
 }
 
-.SmSelect:disabled {
+.SmSelectDisabled {
   cursor: not-allowed;
   opacity: 0.25;
 }

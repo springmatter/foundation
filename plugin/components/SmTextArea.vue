@@ -6,6 +6,7 @@
     </small>
     <textarea
       class="SmTextArea"
+      :class="{ noresize: noresize }"
       v-bind="$attrs"
       :value="value"
       @input="input($event)"
@@ -22,15 +23,18 @@ export default {
   inheritAttrs: false,
   props: {
     label: {
-      type: String
+      type: String,
     },
     required: {
-      type: Boolean
+      type: Boolean,
+    },
+    noresize: {
+      type: Boolean,
     },
     /** This is declared so v-model can be used on the input */
     value: {
-      type: String
-    }
+      type: String,
+    },
     // /** An interface for the contstraint validation API, structured as such: `{ ValidityState: errorMsg }`  */
     // validation: {
     //   type: Object
@@ -45,16 +49,16 @@ export default {
     },
     input(event) {
       this.$emit("input", event.target.value);
-    }
+    },
   },
   mounted() {
     let form = this.$refs.textarea.closest("form");
     if (form) {
-      form.addEventListener("submit", event => {
+      form.addEventListener("submit", (event) => {
         this.checks(event);
       });
     }
-  }
+  },
 };
 </script>
 
@@ -74,10 +78,14 @@ export default {
   background: white;
   border: 1px solid black;
   padding-left: 8px;
-  height: 80px;
   display: block;
   width: 100%;
+  height: 100%;
   resize: vertical;
+}
+
+.SmTextArea.noresize {
+  resize: none;
 }
 
 .SmTextArea:focus {

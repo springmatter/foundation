@@ -20,7 +20,7 @@ A standard button component with optinal icon.
         <SmButton class="ma2">Primary</SmButton>
         <SmButton kind="secondary" class="ma2">Secondary</SmButton>
       </div>
-      `
+      `,
     }}
   </Story>
 </Preview>
@@ -41,7 +41,7 @@ A standard button component with optinal icon.
           Secondary
         </SmButton>
       </div>
-      `
+      `,
     }}
   </Story>
 </Preview>
@@ -61,7 +61,7 @@ Prop `kind` must be set to `icon` and prop `icon` must be specified.
         <SmButton icon="sun" kind="icon" tooltip="Sun"></SmButton>
         <SmButton icon="archive" kind="icon" tooltip="Archive"></SmButton>
       </div>
-      `
+      `,
     }}
   </Story>
 </Preview>
@@ -80,7 +80,7 @@ If you just need to make something clickable and focusable, a standard `<button>
           <small>A simple button</small>
         </button>
       </div>
-      `
+      `,
     }}
   </Story>
 </Preview>
@@ -98,7 +98,28 @@ If you just need to make something clickable and focusable, a standard `<button>
         <SmButton icon="sun" kind="icon" tooltip="Sun" ttDirection="bottom"></SmButton>
         <SmButton icon="archive" kind="icon" tooltip="Archive" ttDirection="left"></SmButton>
       </div>
-      `
+      `,
+    }}
+  </Story>
+</Preview>
+
+## Loading
+
+<Preview>
+  <Story name="loading" height="120px">
+    {{
+      components: { SmButton },
+      data() {
+        return {
+          loading: false,
+        };
+      },
+      template: `
+      <div class="flex pa4">
+        <SmButton icon="plus" @click="loading < 2 ? loading++ : loading = 0"  loadedText="loadedText" loadingText="loadingText" :loading="loading">slot text</SmButton>
+        <SmButton kind="secondary" @click="loading < 2 ? loading++ : loading = 0" class="ml3">Click me</SmButton>
+      </div>
+      `,
     }}
   </Story>
 </Preview>

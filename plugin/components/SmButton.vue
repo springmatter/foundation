@@ -1,7 +1,18 @@
 <template>
-  <button class="SmButton" :class="kind" @click="$emit('click', $event)">
-    <slot></slot>
-    <SmIcon v-if="icon" :name="icon" />
+  <button class="SmButton" :class="btnClass" @click="$emit('click', $event)">
+    <span v-if="loading === 1 && loadingText" class="SmButtonText">
+      {{ loadingText }}
+    </span>
+    <span v-else-if="loading === 2 && loadedText" class="SmButtonText">
+      {{ loadedText }}
+    </span>
+    <span class="SmButtonText" v-else><slot></slot></span>
+
+    <SmSpinner v-if="loading === 1" small class="SmButtonSpinner" />
+    <SmIcon
+      v-if="icon && loading !== 1 && !(loadedText && loading === 2)"
+      :name="icon"
+    />
     <small v-if="tooltip" class="SmButtonTooltip" :class="ttDirection">
       {{ tooltip }}
     </small>
@@ -10,9 +21,12 @@
 
 <script>
 import SmIcon from "./SmIcon.vue";
+import SmSpinner from "./SmSpinner.vue";
+
 export default {
   components: {
     SmIcon,
+    SmSpinner,
   },
   props: {
     /** Specifies the visual style of the button (primary|secondary|icon) */
@@ -34,7 +48,7 @@ export default {
       type: String,
       required: false,
     },
-    /* Changes the direction of the tooltip, in case it is too close to the edge of the screen (left|right|top|bottom) */
+    /** Changes the direction of the tooltip, in case it is too close to the edge of the screen (left|right|top|bottom) */
     ttDirection: {
       type: String,
       required: false,
@@ -42,6 +56,26 @@ export default {
       validator: function(value) {
         return ["left", "right", "top", "bottom"].indexOf(value) !== -1;
       },
+    },
+    /** 0 is not loading, 1 is loading, 2 is loaded */
+    loading: {
+      type: Number,
+      validator(value) {
+        return 0 <= value <= 2;
+      },
+    },
+    /** The text that appears while `loading === 1` */
+    loadingText: {
+      type: String,
+    },
+    /** The text that appears while `loading === 2`. If this prop is provided on a button with an icon the icon will not be displayed when `loading === 2` */
+    loadedText: {
+      type: String,
+    },
+  },
+  computed: {
+    btnClass() {
+      return this.kind + " loading" + this.loading;
     },
   },
 };
@@ -55,7 +89,8 @@ export default {
   cursor: pointer;
   min-width: 32px;
   height: 32px;
-  padding: 0 16px;
+  padding-left: 16px;
+  padding-right: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,19 +122,18 @@ export default {
   outline-offset: -1px;
 }
 
-.SmButton.primary > svg,
-.SmButton.secondary > svg,
-.SmButton.ghost > svg {
-  margin-left: 8px;
-}
-
 .SmButton:disabled {
   opacity: 0.25;
   cursor: not-allowed;
 }
 
-.SmButton:active {
+.SmButton:active:not(:disabled) {
   opacity: 0.75;
+}
+
+.SmButton.loading1,
+.SmButton.loading2 {
+  pointer-events: none;
 }
 
 .SmButton.primary,
@@ -108,32 +142,32 @@ export default {
   color: white;
 }
 
-.SmButton.primary:hover {
+.SmButton.primary:hover:not(.loading1) {
   background: var(--secondary);
   transform: translateY(-1px);
 }
 
 .SmButton.secondary,
-.SmButton.secondary:disabled:hover {
+.SmButton.secondary:disabled {
   background: white;
-  color: var(--primary);
-  border: 1px solid var(--primary);
+  color: black;
+  border: 1px solid black;
 }
 
 .SmButton.icon,
-.SmButton.icon:disabled:hover {
+.SmButton.icon:disabled {
   background: transparent;
   color: black;
   height: 32px;
   padding: 0;
 }
 
-.SmButton.icon:hover {
+.SmButton.icon:hover:not(.loading1) {
   color: var(--primary);
   transform: translateY(-1px);
 }
 
-.SmButton.secondary:hover {
+.SmButton.secondary:hover:not(.loading1) {
   color: var(--secondary);
   border: 1px solid var(--secondary);
   transform: translateY(-1px);
@@ -224,5 +258,20 @@ export default {
 
 .SmButton:hover .SmButtonTooltip {
   opacity: 1;
+}
+
+.SmButtonSpinner {
+  position: relative;
+  margin: 0 10px;
+  /* mix-blend-mode; */
+}
+
+.SmButton.primary .SmButtonSpinner {
+  filter: invert(100%);
+  mix-blend-mode: screen;
+}
+
+.SmButtonText {
+  margin-right: 8px;
 }
 </style>

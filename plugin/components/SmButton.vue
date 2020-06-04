@@ -1,12 +1,16 @@
 <template>
   <button class="SmButton" :class="btnClass" @click="$emit('click', $event)">
-    <span v-if="loading === 1 && loadingText" class="SmButtonText">
-      {{ loadingText }}
-    </span>
-    <span v-else-if="loading === 2 && loadedText" class="SmButtonText">
-      {{ loadedText }}
-    </span>
-    <span class="SmButtonText" v-else><slot></slot></span>
+    <template v-if="kind !== 'icon'">
+      <span v-if="loading === 1 && loadingText" class="SmButtonText">
+        {{ loadingText }}
+      </span>
+      <span v-else-if="loading === 2 && loadedText" class="SmButtonText">
+        {{ loadedText }}
+      </span>
+      <span class="SmButtonText" v-else>
+        <slot></slot>
+      </span>
+    </template>
 
     <SmSpinner v-if="loading === 1" small class="SmButtonSpinner" />
     <SmIcon

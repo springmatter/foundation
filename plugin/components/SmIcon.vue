@@ -16,7 +16,7 @@ export default {
     /** The name of the feather icon you'd like to use */
     name: {
       type: String,
-      required: true
+      required: true,
     },
     /** size of the icon (s|m|l) */
     size: {
@@ -25,14 +25,14 @@ export default {
       required: false,
       validator: function(value) {
         return ["s", "m", "l"].indexOf(value) !== -1;
-      }
-    }
+      },
+    },
   },
   computed: {
     iconCode: function() {
       return feather.icons[this.name].toString();
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -42,7 +42,7 @@ export default {
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
-  fill: none;
+  fill: inherit;
   display: inline;
 }
 

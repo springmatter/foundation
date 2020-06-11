@@ -6,7 +6,8 @@
     v-model="filter"
     placeholder="Search"
     @keyup="filterResults"
-    @search="filterResults"
+    @focus="$emit('focus', $event)"
+    @blur="$emit('blur', $event)"
     :label="label"
   />
 </template>
@@ -17,22 +18,22 @@ import * as Fuse from "fuse.js";
 
 export default {
   components: {
-    SmInput,
+    SmInput
   },
   props: {
     /** Defined only to enable `v-model`. Use `v-model` instead. */
     value: {
-      type: Array,
+      type: Array
     },
     label: {
-      type: String,
-    },
+      type: String
+    }
   },
   data: function() {
     return {
       results: [],
       original: null,
-      filter: "",
+      filter: ""
     };
   },
   computed: {
@@ -48,12 +49,12 @@ export default {
           keys:
             typeof this.original[0] === "string"
               ? []
-              : Object.keys(this.original[0]),
+              : Object.keys(this.original[0])
         });
       } else {
         return null;
       }
-    },
+    }
   },
   methods: {
     filterResults() {
@@ -70,11 +71,11 @@ export default {
         this.results = this.original;
       }
       this.$emit("input", this.results);
-    },
+    }
   },
   mounted: function() {
     this.original = this.value;
-  },
+  }
 };
 </script>
 
@@ -82,5 +83,17 @@ export default {
 .SmSearch {
   position: relative;
   width: 100%;
+}
+
+.SmSearch::before {
+  content: "";
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTcuMzMzMzMgMTIuNjY2N0MxMC4yNzg5IDEyLjY2NjcgMTIuNjY2NyAxMC4yNzg5IDEyLjY2NjcgNy4zMzMzM0MxMi42NjY3IDQuMzg3ODEgMTAuMjc4OSAyIDcuMzMzMzMgMkM0LjM4NzgxIDIgMiA0LjM4NzgxIDIgNy4zMzMzM0MyIDEwLjI3ODkgNC4zODc4MSAxMi42NjY3IDcuMzMzMzMgMTIuNjY2N1oiIHN0cm9rZT0iIzE0MTYxOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik0xNC4wMDAxIDE0TDExLjEwMDEgMTEuMSIgc3Ryb2tlPSIjMTQxNjE4IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==");
+  background-repeat: no-repeat;
+  background-position: center right 8px;
 }
 </style>

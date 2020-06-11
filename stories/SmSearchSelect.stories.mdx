@@ -1,0 +1,49 @@
+import { Meta, Story, Preview, Props } from "@storybook/addon-docs/blocks";
+import SmSearchSelect from "../plugin/components/SmSearchSelect.vue";
+
+<Meta title="Components/SmSearchSelect" component={SmSearchSelect} />
+
+# SmSearchSelect
+
+A searchbar with built in fuzzy finding using [Fuse.js](https://fusejs.io/).
+
+<Props of={SmSearchSelect} />
+
+## Search over Strings
+
+<Preview>
+  <Story name="search select" height="300px">
+    {{
+      components: { SmSearchSelect },
+      data() {
+        return {
+          results: [
+            { display: "Apple", val: 1, extra: "Achillea" },
+            { display: "Banana", val: 2, extra: "Millifolium" },
+            { display: "Canteloupe", val: 3, extra: "Frangula" },
+            { display: "Durian", val: 4, extra: "Alnus" },
+            { display: "Elderberry", val: 5, extra: "Jeff" },
+            { display: "Apple", val: 1, extra: "Achillea" },
+            { display: "Banana", val: 2, extra: "Millifolium" },
+            { display: "Canteloupe", val: 3, extra: "Frangula" },
+            { display: "Durian", val: 4, extra: "Alnus" },
+            { display: "Elderberry", val: 5, extra: "Jeff" },
+            { display: "Apple", val: 1, extra: "Achillea" },
+            { display: "Banana", val: 2, extra: "Millifolium" },
+            { display: "Canteloupe", val: 3, extra: "Frangula" },
+            { display: "Durian", val: 4, extra: "Alnus" },
+            { display: "Elderberry", val: 5, extra: "Jeff" },
+          ],
+          /* results: ["aaaaa", "bbbbb", "ccccc", "ddddd", "eeeee"], */
+          value: 5,
+        };
+      },
+      template: `
+        <div class="ma6">
+          <SmSearchSelect :data="results" displayKeys="display extra" valueKey="val" v-model="value" />
+          <h1>{{ value }}</h1>
+        </div>
+          `,
+    }}
+  </Story>
+</Preview>

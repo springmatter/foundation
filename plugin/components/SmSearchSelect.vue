@@ -1,18 +1,5 @@
 <template>
   <div v-if="dataCopy" class="SmSearchSelect" @click="$event.stopPropagation()">
-    <SmSearch
-      class="SmSearchSelectSearch"
-      v-model="dataCopy"
-      :label="label"
-      @focus="focus()"
-      ref="Search"
-    />
-    <span v-if="selected && showSelected" class="SmSearchSelectSelected">
-      {{ dkeys ? selected[dkeys[0]] : selected }}
-      <small v-if="dkeys" class="SmSearchSelectSecondary">
-        {{ selected[dkeys[1]] }}
-      </small>
-    </span>
     <ul
       class="SmSearchSelectList"
       v-if="open"
@@ -30,6 +17,19 @@
         </small>
       </li>
     </ul>
+    <SmSearch
+      class="SmSearchSelectSearch"
+      v-model="dataCopy"
+      :label="label"
+      @focus="focus()"
+      ref="Search"
+    />
+    <span v-if="selected && showSelected" class="SmSearchSelectSelected">
+      {{ dkeys ? selected[dkeys[0]] : selected }}
+      <small v-if="dkeys" class="SmSearchSelectSecondary">
+        {{ selected[dkeys[1]] }}
+      </small>
+    </span>
   </div>
 </template>
 
@@ -41,29 +41,34 @@ export default {
   props: {
     /** Defined only to enable `v-model`. Use `v-model` instead. `v-model` will correspond to the selected value */
     value: {
-      type: [String, Number]
+      type: [String, Number],
     },
     /** the data list to search over. can be an array of strings, numbers or objects */
     data: {
-      type: Array
+      type: Array,
     },
     /** REQUIRED if the data list is an array objects. One or two space-separated keys that contain display text. The first will be the primary display text and the second will be greyed out secondary text. Both keys must lead to strings or numbers.  */
     displayKeys: {
-      type: String
+      type: String,
     },
     /** REQUIRED if the data list is an array of objects. The value corresponding to this key will be returned via `v-model` when an object is selected.  */
     valueKey: {
-      type: String
+      type: String,
     },
     /** the maximum number of items to be displayed in the dropdown */
     maxItems: {
       type: Number,
       default: 7,
-      validator: maxItems => maxItems > 0
+      validator: (maxItems) => maxItems > 0,
     },
     label: {
-      type: String
-    }
+      type: String,
+    },
+  },
+  watch: {
+    value() {
+      this.changeValue();
+    },
   },
   data() {
     return {
@@ -71,7 +76,7 @@ export default {
       input: false,
       selected: null,
       showSelected: false,
-      open: false
+      open: false,
     };
   },
   computed: {
@@ -81,7 +86,7 @@ export default {
       } else {
         return false;
       }
-    }
+    },
   },
   methods: {
     setValue(item) {
@@ -98,16 +103,22 @@ export default {
     focus() {
       this.open = true;
       this.showSelected = false;
-    }
+    },
+    changeValue() {
+      if (this.value && this.valueKey) {
+        this.selected = this.dataCopy.find(
+          (e) => e[this.valueKey] === this.value
+        );
+        this.showSelected = true;
+      } else if (this.value) {
+        this.selected = this.value;
+      }
+    },
   },
   mounted() {
     this.dataCopy = JSON.parse(JSON.stringify(this.data));
-    if (this.value && this.valueKey) {
-      this.selected = this.dataCopy.find(e => e[this.valueKey] === this.value);
-      this.showSelected = true;
-    } else if (this.value) {
-      this.selected = this.value;
-    }
+
+    this.changeValue();
 
     document.addEventListener("click", () => {
       if (this.selected) {
@@ -115,7 +126,7 @@ export default {
       }
       this.open = false;
     });
-  }
+  },
 };
 </script>
 
@@ -139,6 +150,10 @@ export default {
 }
 
 .SmSearchSelectList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
   margin: 0;
   padding: 0;
   border-left: 1px solid black;
@@ -148,6 +163,7 @@ export default {
   border-top-right-radius: 0;
   margin-top: -1px;
   overflow-y: scroll;
+  background: white;
 }
 
 .SmSearchSelectItem:hover {
@@ -168,6 +184,7 @@ export default {
   height: 30px;
   top: 1px;
   left: 10px;
+  pointer-events: none;
 }
 
 .SmSearchSelectSecondary {
@@ -175,6 +192,5 @@ export default {
   margin-left: 4px;
   margin-top: 2px;
   font-style: italic;
-  /* font-weight: 400; */
 }
 </style>

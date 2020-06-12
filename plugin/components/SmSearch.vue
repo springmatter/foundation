@@ -9,6 +9,7 @@
     @focus="$emit('focus', $event)"
     @blur="$emit('blur', $event)"
     :label="label"
+    :disabled="disabled"
   />
 </template>
 
@@ -27,6 +28,9 @@ export default {
     },
     label: {
       type: String
+    },
+    disabled: {
+      type: Boolean
     }
   },
   data: function() {

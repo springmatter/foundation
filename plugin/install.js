@@ -11,6 +11,7 @@ import SmSearch from "./components/SmSearch.vue";
 import SmSelect from "./components/SmSelect.vue";
 import SmSpinner from "./components/SmSpinner.vue";
 import SmTextArea from "./components/SmTextArea.vue";
+import SmSearchSelect from "./components/SmSearchSelect.vue";
 
 export default {
   install(Vue) {
@@ -24,5 +25,6 @@ export default {
     Vue.component("SmSearch", SmSearch);
     Vue.component("SmSelect", SmSelect);
     Vue.component("SmTextArea", SmTextArea);
-  }
+    Vue.component("SmSearchSelect", SmSearchSelect);
+  },
 };
